@@ -3,7 +3,7 @@ namespace Cogit\Models;
 
 class UsersModel extends Model
 {
-    protected $id;
+    protected $idUser;
     protected $email;
     protected $psw;
 
@@ -23,7 +23,7 @@ class UsersModel extends Model
 
     public function setSession(){
         $_SESSION['user'] = [
-            'id' => $this->id,
+            'id' => $this->idUser,
             'email' => $this->email
         ];
     }
@@ -31,9 +31,9 @@ class UsersModel extends Model
     /**
      * Obtenir la valeur de id
      */ 
-    public function getId():int
+    public function getIdUser():int
     {
-        return $this->id;
+        return $this->idUser;
     }
 
     /**
@@ -41,9 +41,9 @@ class UsersModel extends Model
      *
      * @return  self
      */ 
-    public function setId(int $id):self
+    public function setIdUser(int $idUser):self
     {
-        $this->id = $id;
+        $this->idUser = $idUser;
 
         return $this;
     }
