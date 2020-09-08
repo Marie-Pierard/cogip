@@ -12,8 +12,9 @@ CREATE TABLE IF NOT EXISTS cogit_Company(
     idCompany INT NOT NULL AUTO_INCREMENT,
     idType INT(11),
     Name VARCHAR(50),
-    Tva VARCHAR(12),
+    Tva VARCHAR(13),
     Phone VARCHAR(12),
+    Country VARCHAR(50),
     PRIMARY KEY (idCompany),
     FOREIGN KEY (idType) REFERENCES cogit_Type(idType)
 );
@@ -39,3 +40,9 @@ CREATE TABLE IF NOT EXISTS cogit_Invoice(
     FOREIGN KEY (idCompany) REFERENCES cogit_Company(idCompany),
     FOREIGN KEY (idContact) REFERENCES cogit_Contact(idContact)
 );
+
+CREATE TABLE IF NOT EXIST cogit_users(
+    idUser INT NOT NULL AUTO_INCREMENT,
+    email VARCHAR(50),
+    psw VARCHAR(255)
+)
