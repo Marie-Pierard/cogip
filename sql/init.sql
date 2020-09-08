@@ -8,15 +8,22 @@ CREATE TABLE IF NOT EXISTS cogit_Type(
     PRIMARY KEY(idType)
 );
 
+CREATE TABLE IF NOT EXISTS cogit_Country(
+    idCountry INT NOT NULL AUTO_INCREMENT,
+    Country VARCHAR(50),
+    PRIMARY KEY(idCountry)
+);
+
 CREATE TABLE IF NOT EXISTS cogit_Company(
     idCompany INT NOT NULL AUTO_INCREMENT,
     idType INT(11),
+    idCountry INT(11),
     Name VARCHAR(50),
-    Tva VARCHAR(13),
+    Tva VARCHAR(15),
     Phone VARCHAR(12),
-    Country VARCHAR(50),
     PRIMARY KEY (idCompany),
-    FOREIGN KEY (idType) REFERENCES cogit_Type(idType)
+    FOREIGN KEY (idType) REFERENCES cogit_Type(idType),
+    FOREIGN KEY (idCountry) REFERENCES cogit_Country(idCountry)
 );
 
 CREATE TABLE IF NOT EXISTS cogit_Contact(
