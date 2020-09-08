@@ -33,9 +33,16 @@ class Main
             // On sauvegarde le 2ème paramètre dans $action si il existe, sinon index
             $action = isset($params[0]) ? array_shift($params) : 'index';
 
+            // Si la class n'existe pas on retourne à la page d'acceuil
+            if(!class_exists($controller)){
+                http_response_code(404);
+                header('Location: /');
+                exit;
+            }
+
             // On instancie le contrôleur
             $controller = new $controller();
-
+            
             if(method_exists($controller, $action)){
                 // Si il reste des paramètres, on appelle la méthode en envoyant les paramètres sinon on l'appelle "à vide"
                 (isset($params[0])) ? call_user_func_array([$controller,$action], $params) : $controller->$action();   

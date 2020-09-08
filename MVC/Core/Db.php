@@ -13,10 +13,10 @@ class Db extends PDO
 
     // Informations de connexion
     private const DBHOST = 'localhost';
-    private const DBPORT = 3308;
+    private const DBPORT = 3306;
     private const DBUSER = 'root';
     private const DBPASS = '';
-    private const DBNAME = 'fl';
+    private const DBNAME = 'cogit';
 
     private function __construct()
     {

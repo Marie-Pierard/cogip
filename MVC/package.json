@@ -1,0 +1,19 @@
+{
+  "name": "cogit",
+  "version": "1.0.0",
+  "description": "Challenge",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch ./public/assets/sass/main.scss:./public/assets/css/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ch-vdld-dev/cogit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ch-vdld-dev/cogit/issues"
+  },
+  "homepage": "https://github.com/ch-vdld-dev/cogit#readme"
+}
