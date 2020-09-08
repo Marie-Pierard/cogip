@@ -41,8 +41,9 @@ CREATE TABLE IF NOT EXISTS cogit_Invoice(
     FOREIGN KEY (idContact) REFERENCES cogit_Contact(idContact)
 );
 
-CREATE TABLE IF NOT EXIST cogit_users(
+CREATE TABLE IF NOT EXISTS cogit_users(
     idUser INT NOT NULL AUTO_INCREMENT,
     email VARCHAR(50),
-    psw VARCHAR(255)
-)
+    psw VARCHAR(255),
+    PRIMARY KEY (idUSer)
+);
