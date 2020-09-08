@@ -14,6 +14,7 @@ class UsersController extends Controller
             $userArray = $userModel->findOneByEmail(strip_tags($_POST['email']));
 
             if(!$userArray){
+                $_SESSION['error'][] = 'Erreur de login ou mot de passe.';
                 http_response_code(404);
                 header('Location: /');
                 exit;
@@ -25,7 +26,11 @@ class UsersController extends Controller
                 $user->setSession();
                 header('Location: /');
                 exit;
+            } else {
+                $_SESSION['error'][] = 'Erreur de login ou mot de passe.';
             }
+        } else if(isset($_POST['email']) && isset($_POST['password'])) {
+            $_SESSION['warning'][] = 'Attention veuillez remplir les champs correctement.';
         }
 
         // On instancie le formulaire
@@ -57,6 +62,7 @@ class UsersController extends Controller
             $user->setEmail($email)
                 ->setPsw($pass);
             $user->create();
+            $_SESSION['success'][] = 'Inscription réussie.';
             header('Location: /');
             exit;
         }
@@ -80,6 +86,7 @@ class UsersController extends Controller
      */
     public function logout(){
         unset($_SESSION['user']);
+        $_SESSION['success'][] = 'Déconnexion réussie.';
         header('Location: '. $_SERVER['HTTP_REFERER']);
         exit;
     }

@@ -37,7 +37,7 @@
             </ul>
         </div>
     </nav>
-
+    <?php include '../Views/layout/message.php'; ?>
     <div class="container">
         <?= $content ?>
     </div>
