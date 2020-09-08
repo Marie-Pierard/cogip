@@ -21,7 +21,19 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
-                </li>               
+                </li>
+                <?php if(isset($_SESSION['user']) && !empty($_SESSION['user']['id'])) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/logout">Deconnexion</a>
+                    </li>
+                <?php else : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/login">Connexion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/register">Inscription</a>
+                    </li>
+                <?php endif; ?>  
             </ul>
         </div>
     </nav>
