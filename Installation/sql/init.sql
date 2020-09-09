@@ -52,5 +52,6 @@ CREATE TABLE IF NOT EXISTS cogit_users(
     id INT NOT NULL AUTO_INCREMENT,
     email VARCHAR(50),
     psw VARCHAR(255),
+    role VARCHAR(50),
     PRIMARY KEY (id)
 );
