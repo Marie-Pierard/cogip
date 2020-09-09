@@ -22,11 +22,32 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/invoices">Facture</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/companies">Compagnies</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="/contacts">Contacts</a>
+                </li>
+
                 <?php if(isset($_SESSION['user']) && !empty($_SESSION['user']['id'])) : ?>
                     <?php if($_SESSION['user']['role'] === 'admin') : ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/admin/view">AdminView</a>
-                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Admin
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/admin/view">Dashboard</a>
+                            <a class="dropdown-item" href="/contacts/add">New contact</a>
+                            <a class="dropdown-item" href="/invoices/add">New invoice</a>
+                            <a class="dropdown-item" href="/companies/add">New company</a>
+                        </div>
+                    </li>
                     <?php endif; ?>
                     <li class="nav-item">
                         <a class="nav-link" href="/users/logout">Deconnexion</a>
