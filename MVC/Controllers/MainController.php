@@ -8,7 +8,11 @@ class MainController extends Controller
 {
     public function index()
     {
-        Db::getInstance();
-        $this->render('main/index');
+        if(isset($_SESSION['user'])){
+            $this->render('main/index');
+        } else {
+            header('Location: /users/login');
+            exit;
+        }
     }
 }

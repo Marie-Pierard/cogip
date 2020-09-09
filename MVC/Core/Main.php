@@ -49,7 +49,8 @@ class Main
             }else{
                 // On envoie le code réponse 404
                 http_response_code(404);
-                echo "La page recherchée n'existe pas";
+                $_SESSION['error'][] = "La page recherchée n'existe pas";
+                header('Location: /');
             }
         }else{
             // Ici aucun paramètre n'est défini

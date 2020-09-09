@@ -3,9 +3,10 @@ namespace Cogit\Models;
 
 class UsersModel extends Model
 {
-    protected $idUser;
+    protected $id;
     protected $email;
     protected $psw;
+    protected $role;
 
     public function __construct()
     {
@@ -23,17 +24,18 @@ class UsersModel extends Model
 
     public function setSession(){
         $_SESSION['user'] = [
-            'id' => $this->idUser,
-            'email' => $this->email
+            'id' => $this->id,
+            'email' => $this->email,
+            'role' => $this->role
         ];
     }
 
     /**
      * Obtenir la valeur de id
      */ 
-    public function getIdUser():int
+    public function getid():int
     {
-        return $this->idUser;
+        return $this->id;
     }
 
     /**
@@ -41,9 +43,9 @@ class UsersModel extends Model
      *
      * @return  self
      */ 
-    public function setIdUser(int $idUser):self
+    public function setid(int $id):self
     {
-        $this->idUser = $idUser;
+        $this->id = $id;
 
         return $this;
     }
@@ -84,6 +86,26 @@ class UsersModel extends Model
     public function setPsw(string $psw):self
     {
         $this->psw = $psw;
+
+        return $this;
+    }
+
+    /**
+     * Obtenir la valeur de psw
+     */ 
+    public function getRole():string
+    {
+        return $this->role;
+    }
+
+    /**
+     * Définir la valeur de psw
+     *
+     * @return  self
+     */ 
+    public function setRole(string $role):self
+    {
+        $this->role = $role;
 
         return $this;
     }

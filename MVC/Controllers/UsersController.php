@@ -60,7 +60,8 @@ class UsersController extends Controller
 
             $user = new UsersModel;
             $user->setEmail($email)
-                ->setPsw($pass);
+                 ->setPsw($pass)
+                 ->setRole('user');
             $user->create();
             $_SESSION['success'][] = 'Inscription réussie.';
             header('Location: /');

@@ -23,6 +23,11 @@
                     <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
                 </li>
                 <?php if(isset($_SESSION['user']) && !empty($_SESSION['user']['id'])) : ?>
+                    <?php if($_SESSION['user']['role'] === 'admin') : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/view">AdminView</a>
+                        </li>
+                    <?php endif; ?>
                     <li class="nav-item">
                         <a class="nav-link" href="/users/logout">Deconnexion</a>
                     </li>
