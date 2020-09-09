@@ -21,24 +21,35 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
-                </li>               
+                </li>
+                <?php if(isset($_SESSION['user']) && !empty($_SESSION['user']['id'])) : ?>
+                    <?php if($_SESSION['user']['role'] === 'admin') : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/view">AdminView</a>
+                        </li>
+                    <?php endif; ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/logout">Deconnexion</a>
+                    </li>
+                <?php else : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/login">Connexion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/register">Inscription</a>
+                    </li>
+                <?php endif; ?>  
             </ul>
         </div>
     </nav>
-
+    <?php include '../Views/layout/message.php'; ?>
     <div class="container">
         <?= $content ?>
     </div>
 
-    <script src="/assets/js/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
-    <script src="/assets/js/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-    <script src="/assets/js/bootstrap.min.js"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
-    </script>
+    <script src="/assets/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
 </body>
 
 </html>
