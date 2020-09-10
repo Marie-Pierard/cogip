@@ -163,4 +163,8 @@ class Model extends Db
         }
         return $this;
     }
+
+    public function limitById(int $limit, $order = 'ASC'){
+        return $this->requete("SELECT * FROM {$this->table} ORDER BY id {$order} Limit $limit")->fetchAll();
+    }
 }
