@@ -27,7 +27,6 @@ class CountryModel extends Model
     public function setCountry(string $country):self
     {
         $this->country = $country;
-        
 
         return $this;
     }
@@ -40,8 +39,11 @@ class CountryModel extends Model
         return $this->country;
     }
 
-    //  * @return  self
-    //  */ 
+    /**
+     * Définir la valeur de country
+     *
+     * @return  self
+     */ 
     public function setId(int $id):self
     {
         $this->id = $id;
