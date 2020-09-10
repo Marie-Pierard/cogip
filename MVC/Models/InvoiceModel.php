@@ -61,7 +61,7 @@ class InvoiceModel extends Model
      *
      * @return date
      */
-    public function getDate():date
+    public function getDate():string
     {
         return $this->date;
     }
@@ -90,7 +90,7 @@ class InvoiceModel extends Model
      */ 
     public function setidCompany(int $idCompany):self
     {
-        $this->id = $idCompany;
+        $this->idCompany = $idCompany;
 
         return $this;
     }
@@ -107,9 +107,9 @@ class InvoiceModel extends Model
      *
      * @return  self
      */ 
-    public function setidContact(int $idContact):self
+    public function setidContact(?int $idContact):self
     {
-        $this->id = $idContact;
+        $this->idContact = $idContact;
 
         return $this;
     }
