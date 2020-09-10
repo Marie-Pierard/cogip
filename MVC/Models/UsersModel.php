@@ -56,7 +56,7 @@ class UsersModel extends Model
      */ 
     public function getLogin():int
     {
-        return $this->id;
+        return $this->login;
     }
 
     /**
