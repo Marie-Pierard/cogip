@@ -103,7 +103,7 @@ class  CompanyModel extends Model
     /**
      * Obtenir la valeur de tva
      */ 
-    public function getTva():int
+    public function getTva():string
     {
         return $this->tva;
     }
@@ -124,7 +124,7 @@ class  CompanyModel extends Model
     /**
      * Obtenir la valeur de phone
      */ 
-    public function getPhone():int
+    public function getPhone():string
     {
         return $this->phone;
     }
@@ -134,7 +134,7 @@ class  CompanyModel extends Model
      *
      * @return  self
      */ 
-    public function setPhone(int $phone):self
+    public function setPhone(string $phone):self
     {
         $this->phone = $phone;
 
