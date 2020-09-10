@@ -114,4 +114,8 @@ class InvoiceModel extends Model
         return $this;
     }
 
+    public function infocComplete(){
+        
+    }
+
 }

@@ -2,17 +2,19 @@
 
 namespace Cogit\Controllers;
 
-use Cogit\Models\TypeModel;
-
+use Cogit\Models\InvoiceModel;
+use Cogit\Models\ContactModel;
+use Cogit\Models\CompanyModel;
 
 class MainController extends Controller
 {
     public function index()
-    {
-        $t = new TypeModel();
-
-        $tmp = $t->hydrate($t->find(2));
-
-        $this->render('main/index', ['test' => $tmp]);
+    {   
+        $info = [
+            'invoice' => (new InvoiceModel())->limitById(5, 'DESC'),
+            'contact' => (new ContactModel())->limitById(5, 'DESC'),
+            'company' => (new CompanyModel())->limitById(5, 'DESC')
+        ];
+        $this->render('main/index', $info);
     }
 }
