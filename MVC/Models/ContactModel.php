@@ -4,7 +4,11 @@ namespace Cogit\Models;
 class ContactModel extends Model
 {
     protected $id;
-    protected $contact;
+    protected $idCompany;
+    protected $firstName;
+    protected $LastName;
+    protected $email;
+    protected $phone;
 
     public function __construct()
     {
@@ -26,7 +30,7 @@ class ContactModel extends Model
      */ 
     public function setIdCompany(int $idCompany):self
     {
-        $this->contact = $idCompany;
+        $this->idCompany = $idCompany;
 
         return $this;
     }
@@ -36,7 +40,7 @@ class ContactModel extends Model
      */ 
     public function getidCompany():int
     {
-        return $this->contact;
+        return $this->idCompany;
     }
 
     /**
@@ -52,33 +56,33 @@ class ContactModel extends Model
     }
     public function setLastname(string $LastName):self
     {
-        $this->contact = $LastName;
+        $this->LastName = $LastName;
 
         return $this;
     }
     public function getLastname():self
     {
-        return $this->contact;
+        return $this->LastName;
     }
     public function setFirstName(string $firstName):self
     {
-        $this->contact = $firstName;
+        $this->firstName = $firstName;
 
         return $this;
     }
     public function getFirstName():self
     {
-        return $this->contact;
+        return $this->firstName;
     }
     public function setPhone(string $phone):self
     {
-        $this->contact = $phone;
+        $this->phone = $phone;
 
         return $this;
     }
     public function getPhone():self
     {
-        return $this->contact;
+        return $this->phone;
     }
     public function setEmail(string $email):self
     {
