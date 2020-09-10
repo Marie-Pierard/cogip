@@ -20,13 +20,13 @@ class TypeModel extends Model
     }
 
     /**
-     * Définir la valeur de Type
+     * Définir la valeur de Id
      *
      * @return  self
      */ 
-    public function setType(string $type):self
+    public function setId(int $id):self
     {
-        $this->type = $type;
+        $this->id = $id;
 
         return $this;
     }
@@ -40,14 +40,15 @@ class TypeModel extends Model
     }
 
     /**
-     * Définir la valeur de Id
+     * Définir la valeur de Type
      *
      * @return  self
      */ 
-    public function setId(int $id):self
+    public function setType(string $type):self
     {
-        $this->id = $id;
+        $this->type = $type;
 
         return $this;
     }
+    
 }
