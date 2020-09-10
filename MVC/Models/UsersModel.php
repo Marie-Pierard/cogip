@@ -4,6 +4,7 @@ namespace Cogit\Models;
 class UsersModel extends Model
 {
     protected $id;
+    protected $login;
     protected $email;
     protected $psw;
     protected $role;
@@ -13,13 +14,13 @@ class UsersModel extends Model
         $this->table = 'cogit_users';
     }
     /**
-     * Récupérer un user à partir de son e-mail
-     * @param string $email 
+     * Récupérer un user à partir de son login
+     * @param string $login 
      * @return mixed 
      */
-    public function findOneByEmail(string $email)
+    public function findOneByLogin(string $login)
     {
-        return $this->requete("SELECT * FROM {$this->table} WHERE email = ?", [$email])->fetch();
+        return $this->requete("SELECT * FROM {$this->table} WHERE login = ?", [$login])->fetch();
     }
 
     public function setSession(){
@@ -46,6 +47,26 @@ class UsersModel extends Model
     public function setId(int $id):self
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Obtenir la valeur de login
+     */ 
+    public function getLogin():int
+    {
+        return $this->id;
+    }
+
+    /**
+     * Définir la valeur de login
+     *
+     * @return  self
+     */ 
+    public function setLogin(string $login):self
+    {
+        $this->login = $login;
 
         return $this;
     }

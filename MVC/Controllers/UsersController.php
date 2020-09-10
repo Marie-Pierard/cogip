@@ -9,9 +9,9 @@ class UsersController extends Controller
 {
     public function login()
     {
-        if(Form::validate($_POST, ['email', 'password'])){
+        if(Form::validate($_POST, ['login', 'password'])){
             $userModel = new UsersModel;
-            $userArray = $userModel->findOneByEmail(strip_tags($_POST['email']));
+            $userArray = $userModel->findOneByLogin(strip_tags($_POST['login']));
 
             if(!$userArray){
                 $_SESSION['error'][] = 'Erreur de login ou mot de passe.';
@@ -29,7 +29,7 @@ class UsersController extends Controller
             } else {
                 $_SESSION['error'][] = 'Erreur de login ou mot de passe.';
             }
-        } else if(isset($_POST['email']) && isset($_POST['password'])) {
+        } else if(isset($_POST['login']) && isset($_POST['password'])) {
             $_SESSION['warning'][] = 'Attention veuillez remplir les champs correctement.';
         }
 
@@ -38,9 +38,9 @@ class UsersController extends Controller
 
         // On ajoute chacune des parties qui nous intéressent
         $form->debutForm('post', '#', ['style'=>'width: 250px; margin: auto;'])
-            ->ajoutLabelFor('email', 'Email :')
-            ->ajoutInput('email', 'email', ['id' => 'email', 'class' => 'form-control'])
-            ->ajoutLabelFor('password', 'Mot de passe :')
+            ->ajoutLabelFor('login', 'Votre identifiant')
+            ->ajoutInput('login', 'login', ['id' => 'login', 'class' => 'form-control'])
+            ->ajoutLabelFor('password', 'Votre mot de passe')
             ->ajoutInput('password', 'password', ['id' => 'password', 'class' => 'form-control'])
             ->ajoutButton('Me connecter', ['class' => 'btn btn-primary mt-3'])
             ->finForm()
@@ -53,13 +53,15 @@ class UsersController extends Controller
 
     public function register(){
         // On vérifie si notre post contient les champs email et password
-        if(Form::validate($_POST, ['email', 'password'])){
-            // On nettoie l'e-mail et on chiffre le mot de passe
+        if(Form::validate($_POST, ['login', 'email', 'password'])){
+            // On nettoie le login, l'e-mail et on chiffre le mot de passe
+            $login = strip_tags($_POST['login']);
             $email = strip_tags($_POST['email']);
             $pass = password_hash($_POST['password'], PASSWORD_ARGON2I);
 
             $user = new UsersModel;
-            $user->setEmail($email)
+            $user->setLogin($login)
+                 ->setEmail($email)
                  ->setPsw($pass)
                  ->setRole('user');
             $user->create();
@@ -71,9 +73,11 @@ class UsersController extends Controller
         $form = new Form;
 
         $form->debutForm('post', '#', ['style'=>'width: 250px; margin: auto;'])
-            ->ajoutLabelFor('email', 'E-mail :')
+            ->ajoutLabelFor('login', 'Votre identifiant')
+            ->ajoutInput('login', 'login', ['class' => 'form-control', 'id' => 'login'])
+            ->ajoutLabelFor('email', 'Votre adresse E-mail')
             ->ajoutInput('email', 'email', ['class' => 'form-control', 'id' => 'email'])
-            ->ajoutLabelFor('pass', 'Mot de passe :')
+            ->ajoutLabelFor('pass', 'Votre mot de passe')
             ->ajoutInput('password', 'password', ['id' => 'pass', 'class' => 'form-control'])
             ->ajoutButton('M\'inscrire', ['class' => 'btn btn-primary mt-3'])
             ->finForm();

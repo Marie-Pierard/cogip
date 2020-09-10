@@ -28,14 +28,14 @@ class AdminController extends Controller
                 $role = $user->getRole();
                 $user->setRole($_POST['role']);
                 $user->update();
-                $_SESSION['success'][] = "Modification du role de {$user->getEmail()} de {$role} à {$user->getRole()}.";
+                $_SESSION['success'][] = "Modification du role de {$user->getLogin()} de {$role} à {$user->getRole()}.";
                 header('Location: /admin/view');
                 exit;
             }
 
             $form = new Form;
             $form->debutForm('post', '#', ['style'=>'width: 250px; margin: auto;'])
-                ->ajoutLabelFor('role', "Role de {$user->getEmail()}:")
+                ->ajoutLabelFor('role', "Role de {$user->getLogin()}:")
                 ->ajoutSelect('role', ['user' => ' User', 'moderator' => 'Moderateur', 'admin' =>'Admin'], ['id' => 'role', 'class' => 'form-control'])
                 ->ajoutButton('Modifier', ['class' => 'btn btn-primary mt-3'])
                 ->finForm()

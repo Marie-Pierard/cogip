@@ -1,17 +1,17 @@
 <table class="table mt-3">
   <thead class="thead-dark">
     <tr>
+      <th scope="col">Login</th>
       <th scope="col">Email</th>
       <th scope="col">Rôle</th>
-      <th scope="col">Gestion</th>
     </tr>
   </thead>
   <tbody>
     <?php foreach($data as $line) : ?>
         <tr>
+            <td><?= $line->login ?></td>
             <td><?= $line->email ?></td>
-            <td><?= $line->role ?></td>
-            <td><a href="/admin/edit/<?= $line->id ?>">Modifier rôle</a></td>
+            <td><?= $line->role ?> <a href="/admin/edit/<?= $line->id ?>"><img src="/assets/images/edit.png" alt="Edition du rôle" class="icone"></a></td>
         </tr>
     <?php endforeach; ?>
   </tbody>
