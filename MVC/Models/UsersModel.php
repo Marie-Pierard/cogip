@@ -33,7 +33,7 @@ class UsersModel extends Model
     /**
      * Obtenir la valeur de id
      */ 
-    public function getid():int
+    public function getId():int
     {
         return $this->id;
     }
@@ -43,7 +43,7 @@ class UsersModel extends Model
      *
      * @return  self
      */ 
-    public function setid(int $id):self
+    public function setId(int $id):self
     {
         $this->id = $id;
 
