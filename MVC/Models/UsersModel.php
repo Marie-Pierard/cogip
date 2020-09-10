@@ -26,6 +26,7 @@ class UsersModel extends Model
     public function setSession(){
         $_SESSION['user'] = [
             'id' => $this->id,
+            'login' => $this->login,
             'email' => $this->email,
             'role' => $this->role
         ];
