@@ -68,6 +68,8 @@ class UsersController extends Controller
             $_SESSION['success'][] = 'Inscription réussie.';
             header('Location: /');
             exit;
+        } else if(isset($_POST['login']) && isset($_POST['email']) && isset($_POST['password'])) {
+            $_SESSION['warning'][] = 'Attention veuillez remplir les champs correctement.';
         }
 
         $form = new Form;
