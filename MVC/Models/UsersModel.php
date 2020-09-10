@@ -54,7 +54,7 @@ class UsersModel extends Model
     /**
      * Obtenir la valeur de login
      */ 
-    public function getLogin():int
+    public function getLogin():string
     {
         return $this->login;
     }
