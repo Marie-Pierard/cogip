@@ -122,7 +122,7 @@ class  CompanyModel extends Model
 
 
     /**
-     * Obtenir la valeur de id
+     * Obtenir la valeur de phone
      */ 
     public function getPhone():int
     {
@@ -130,7 +130,7 @@ class  CompanyModel extends Model
     }
 
     /**
-     * Définir la valeur de id
+     * Définir la valeur de phone
      *
      * @return  self
      */ 
