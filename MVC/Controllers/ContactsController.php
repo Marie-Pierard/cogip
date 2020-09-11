@@ -12,5 +12,9 @@ class ContactsController extends Controller {
     public function view(){
         $contact = new ContactModel();
         $this->render('contact/contact', ['data' => $contact->findAll()]);
+   
     }
+
+
+
 }

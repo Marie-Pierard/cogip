@@ -9,6 +9,7 @@ class ContactModel extends Model
     protected $LastName;
     protected $email;
     protected $phone;
+    protected $company;
 
     public function __construct()
     {
@@ -93,5 +94,9 @@ class ContactModel extends Model
     public function getEmail():string
     {
         return $this->email;
+    }
+    public function join(){
+    $company = new CompanyModel();
+    $this->setCountry($company->hydrate($company->find($this->idCompany)));
     }
 }
