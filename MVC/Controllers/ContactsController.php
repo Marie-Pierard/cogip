@@ -7,12 +7,14 @@ use Cogit\Models\ContactModel;
 class ContactsController extends Controller {
     public function index()
     {
-        $this->render('contact/contact');
-    }
-    public function view(){
-        $contact = new ContactModel();
-        $this->render('contact/contact', ['data' => $contact->findAll()]);
-   
+        $contacte = (new ContactModel())->findAll();
+
+        $contact = [];
+        foreach ($contacte as $value) {
+            $contact[] = (new ContactModel())->hydrate($value)->join();
+        }
+
+        $this->render('contact/contact', ['data' => $contact]);
     }
 
 

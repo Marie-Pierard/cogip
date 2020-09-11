@@ -55,13 +55,13 @@ class ContactModel extends Model
 
         return $this;
     }
-    public function setLastname(string $LastName):self
+    public function setLastName(string $LastName):self
     {
         $this->LastName = $LastName;
 
         return $this;
     }
-    public function getLastname():string
+    public function getLastName():string
     {
         return $this->LastName;
     }
@@ -96,7 +96,15 @@ class ContactModel extends Model
         return $this->email;
     }
     public function join(){
-    $company = new CompanyModel();
-    $this->setCountry($company->hydrate($company->find($this->idCompany)));
+        $company = new CompanyModel();
+        $this->setCompany($company->hydrate($company->find($this->idCompany)));
+        return $this;
+    }
+
+    public function setCompany($company){
+        $this->company = $company;
+    }
+    public function getCompany(){
+        return $this->company;
     }
 }

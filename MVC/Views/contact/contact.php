@@ -13,9 +13,10 @@
   <tbody>
     <?php foreach($data as $line) : ?>
         <tr>
-            <td><?= $line->FirstName," ", $line->LastName ?></td>
-            <td><?= $line->Phone ?></td>
-            <td><?= $line->Email ?></td>
+            <td><a href="/contacts/details/<?= $line->getId() ?>"><?= $line->getFirstName()," ", $line->getLastName() ?></a></td>
+            <td><?= $line->getPhone() ?></td>
+            <td><?= $line->getEmail() ?></td>
+            <td><?= $line->getCompany()->getName() ?></td>
         </tr>
     <?php endforeach; ?>
   </tbody>
