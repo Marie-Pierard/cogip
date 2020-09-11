@@ -147,7 +147,7 @@ class Model extends Db
     /**
      * Hydratation des données
      * @param array $donnees Tableau associatif des données
-     * @return self Retourne l'objet hydraté
+     * @return any Retourne l'objet hydraté
      */
     public function hydrate($values)
     {
@@ -164,7 +164,15 @@ class Model extends Db
         return $this;
     }
 
-    public function limitById(int $limit, $order = 'ASC'){
-        return $this->requete("SELECT * FROM {$this->table} ORDER BY id {$order} Limit $limit")->fetchAll();
+    /**
+     * Retourne une liste avec limit
+     *
+     * @param integer $limit Nombre d'enregistrement que l'on souhaite
+     * @param string $order ASC ou DESC
+     * @param string $by Champs sur lequelle doit etre trier la liste
+     * @return object
+     */
+    public function limitBy(int $limit, string $order = 'ASC', string $by='id'){
+        return $this->requete("SELECT * FROM {$this->table} ORDER BY {$by} {$order} Limit $limit")->fetchAll();
     }
 }
