@@ -9,4 +9,8 @@ class ContactsController extends Controller {
     {
         $this->render('contact/contact');
     }
+    public function view(){
+        $contact = new ContactModel();
+        $this->render('contact/contact', ['data' => $contact->findAll()]);
+    }
 }
