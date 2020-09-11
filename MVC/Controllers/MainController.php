@@ -11,10 +11,18 @@ class MainController extends Controller
     public function index()
     {   
         $info = [
-            'invoice' => (new InvoiceModel())->limitById(5, 'DESC'),
-            'contact' => (new ContactModel())->limitById(5, 'DESC'),
-            'company' => (new CompanyModel())->limitById(5, 'DESC')
+            'invoice' => (new InvoiceModel())->limitBy(5, 'DESC', 'date'),
+            'contact' => (new ContactModel())->limitBy(5, 'DESC'),
+            'company' => (new CompanyModel())->limitBy(5, 'DESC')
         ];
+
+        $invoice = [];
+        foreach ($info['invoice'] as $value) {
+            $invoice[] = (new InvoiceModel())->hydrate($value)->join();
+        }
+        $info['invoice'] = $invoice;
+
+        
         $this->render('main/index', $info);
     }
 }

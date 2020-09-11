@@ -10,6 +10,9 @@ class  CompanyModel extends Model
     protected $tva;
     protected $phone;
 
+    protected $country;
+    protected $type;
+
     public function __construct()
     {
         $this->table = 'cogit_Company';
@@ -139,5 +142,42 @@ class  CompanyModel extends Model
         $this->phone = $phone;
 
         return $this;
+    }
+
+    /**
+     * Hydrate les variables des champs joint à la table
+     *
+     * @return self
+     */
+    public function join() : self
+    {
+        $country = new CountryModel();
+        $this->setCountry($country->hydrate($country->find($this->idCountry)));
+        $type = new TypeModel();
+        $this->setType($type->hydrate($type->find($this->idType)));
+        
+        return $this;
+    }
+
+    public function setCountry($country) : self
+    {
+        $this->country = $country;
+        return $this;
+    }
+
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    public function setType($type) : self
+    {
+        $this->type = $type;
+        return $this;
+    }
+
+    public function getType()
+    {
+        return $this->type;
     }
 }
