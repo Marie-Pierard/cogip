@@ -60,7 +60,7 @@ class ContactModel extends Model
 
         return $this;
     }
-    public function getLastname():self
+    public function getLastname():string
     {
         return $this->LastName;
     }
@@ -70,7 +70,7 @@ class ContactModel extends Model
 
         return $this;
     }
-    public function getFirstName():self
+    public function getFirstName():string
     {
         return $this->firstName;
     }
@@ -80,7 +80,7 @@ class ContactModel extends Model
 
         return $this;
     }
-    public function getPhone():self
+    public function getPhone():string
     {
         return $this->phone;
     }
