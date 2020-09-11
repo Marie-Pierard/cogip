@@ -83,7 +83,7 @@ class InvoiceModel extends Model
     /**
      * Obtenir la valeur de idCompany
      */ 
-    public function getidCompany():int
+    public function getIdCompany():int
     {
         return $this->idCompany;
     }
@@ -92,7 +92,7 @@ class InvoiceModel extends Model
      *
      * @return  self
      */ 
-    public function setidCompany(int $idCompany):self
+    public function setIdCompany(int $idCompany):self
     {
         $this->idCompany = $idCompany;
 
@@ -102,7 +102,7 @@ class InvoiceModel extends Model
     /**
      * Obtenir la valeur de idContact
      */ 
-    public function getidContact():int
+    public function getIdContact():int
     {
         return $this->idCompany;
     }
@@ -111,7 +111,7 @@ class InvoiceModel extends Model
      *
      * @return  self
      */ 
-    public function setidContact(?int $idContact):self
+    public function setIdContact(?int $idContact):self
     {
         $this->idContact = $idContact;
 
