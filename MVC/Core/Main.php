@@ -36,6 +36,7 @@ class Main
             // Si la class n'existe pas on retourne à la page d'acceuil
             if(!class_exists($controller)){
                 http_response_code(404);
+                $_SESSION['error'][] = "La page recherchée n'existe pas";
                 header('Location: /');
                 exit;
             }
@@ -49,7 +50,9 @@ class Main
             }else{
                 // On envoie le code réponse 404
                 http_response_code(404);
-                echo "La page recherchée n'existe pas";
+                $_SESSION['error'][] = "La page recherchée n'existe pas";
+                header('Location: /');
+                exit;
             }
         }else{
             // Ici aucun paramètre n'est défini

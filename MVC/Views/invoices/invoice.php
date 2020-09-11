@@ -9,12 +9,12 @@
     </tr>
   </thead>
   <tbody>
-    <?php foreach($invoice as $line) : ?>
-        <tr>
+    <?php foreach($invoices as $line) : ?>
+      <tr>
           <td><?= $line->getNumberInvoice() ?></td>
           <td><?= $line->getDate() ?></td>
           <td><?= $line->getCompany()->getName() ?></td>
-          <td><?= $line->getCompany()->getType() ?></td>
+          <td><?= $line->getCompany()->getType()->getType() ?></td>
         </tr>
     <?php endforeach; ?>
   </tbody>

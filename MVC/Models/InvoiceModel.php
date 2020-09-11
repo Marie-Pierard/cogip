@@ -11,6 +11,10 @@ class InvoiceModel extends Model
     protected $idCompany;
     protected $idContact;
 
+    // Relation autre table
+    protected $company;
+    protected $contact;
+
     public function __construct()
     {
         $this->table = 'cogit_Invoice';
@@ -61,7 +65,7 @@ class InvoiceModel extends Model
      *
      * @return date
      */
-    public function getDate():date
+    public function getDate():string
     {
         return $this->date;
     }
@@ -72,14 +76,14 @@ class InvoiceModel extends Model
      */ 
     public function setDate(string $date):self
     {
-        $this->date = $date;
+        $this->date = date_format(date_create($date),"d/m/Y");
         return $this;
     }
     // getter and setter for idCompany
     /**
      * Obtenir la valeur de idCompany
      */ 
-    public function getidCompany():int
+    public function getIdCompany():int
     {
         return $this->idCompany;
     }
@@ -88,9 +92,9 @@ class InvoiceModel extends Model
      *
      * @return  self
      */ 
-    public function setidCompany(int $idCompany):self
+    public function setIdCompany(int $idCompany):self
     {
-        $this->id = $idCompany;
+        $this->idCompany = $idCompany;
 
         return $this;
     }
@@ -98,7 +102,7 @@ class InvoiceModel extends Model
     /**
      * Obtenir la valeur de idContact
      */ 
-    public function getidContact():int
+    public function getIdContact():int
     {
         return $this->idCompany;
     }
@@ -107,11 +111,54 @@ class InvoiceModel extends Model
      *
      * @return  self
      */ 
-    public function setidContact(int $idContact):self
+    public function setIdContact(?int $idContact):self
     {
-        $this->id = $idContact;
+        $this->idContact = $idContact;
 
         return $this;
     }
 
+    /**
+     * Hydrate les variables des champs joint à la table
+     *
+     * @return self
+     */
+    public function join() : self
+    {
+        $company = new CompanyModel();
+        $this->setCompany($company->hydrate($company->find($this->idCompany)));
+        $this->company->join();
+        
+        if($this->idContact != null){
+            $contact = new ContactModel();
+            $this->setContact($company->hydrate($contact->find($this->idContact)));
+            $this->contact->join();
+        } else {
+            $this->setContact(null);
+        }
+
+        return $this;
+    }
+
+    public function setCompany($company)
+    {
+        $this->company = $company;
+        return $this;
+    }
+
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    public function setContact($contact)
+    {
+        $this->contact = $contact;
+        return $this;
+    }
+
+    public function getContact()
+    {
+        return $this->contact;
+    }
 }

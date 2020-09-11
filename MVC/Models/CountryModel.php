@@ -34,7 +34,7 @@ class CountryModel extends Model
     /**
      * Obtenir la valeur de country
      */ 
-    public function getCountry():int
+    public function getCountry():string
     {
         return $this->country;
     }

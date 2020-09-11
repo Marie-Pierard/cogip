@@ -50,7 +50,6 @@ CREATE TABLE IF NOT EXISTS cogit_Invoice(
 
 CREATE TABLE IF NOT EXISTS cogit_users(
     id INT NOT NULL AUTO_INCREMENT,
-    login VARCHAR(50),
     email VARCHAR(50),
     psw VARCHAR(255),
     role VARCHAR(50),

@@ -9,15 +9,17 @@ class InvoicesController extends Controller
     public function index()
     {
         $info = [
-            'invoice' => (new InvoiceModel())->findAll()
+            'invoices' => (new InvoiceModel())->findAll()
         ];
 
         $invoice = [];
-        foreach ($info['invoice'] as $value) {
+        foreach ($info['invoices'] as $value) {
             $invoice[] = (new InvoiceModel())->hydrate($value)->join();
         }
-        $info['invoice'] = $invoice;
-        
-        $this->render('invoices/invoice', $invoice);
+        $info['invoices'] = $invoice;
+/*         echo "<pre>" ;
+        var_dump($info);
+        echo "</pre>"; */
+        $this->render('invoices/invoice', $info);
     }
 }

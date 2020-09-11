@@ -2,13 +2,27 @@
 
 namespace Cogit\Controllers;
 
-use Cogit\Core\Db;
+use Cogit\Models\InvoiceModel;
+use Cogit\Models\ContactModel;
+use Cogit\Models\CompanyModel;
 
 class MainController extends Controller
 {
     public function index()
-    {
-        Db::getInstance();
-        $this->render('main/index');
+    {   
+        $info = [
+            'invoice' => (new InvoiceModel())->limitBy(5, 'DESC', 'date'),
+            'contact' => (new ContactModel())->limitBy(5, 'DESC'),
+            'company' => (new CompanyModel())->limitBy(5, 'DESC')
+        ];
+
+        $invoice = [];
+        foreach ($info['invoice'] as $value) {
+            $invoice[] = (new InvoiceModel())->hydrate($value)->join();
+        }
+        $info['invoice'] = $invoice;
+
+        
+        $this->render('main/index', $info);
     }
 }
