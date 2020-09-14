@@ -12,7 +12,7 @@
   <tbody>
     <?php foreach($allclients as $line) : ?>
         <tr>
-            <td><a href="/company/details/<?= $line->getId() ?>"><?= $line->getName() ?></a></td>
+            <td><a href="/companies/details/<?= $line->getId() ?>"><?= $line->getName() ?></a></td>
             <td><?= $line->getTva() ?></td>
             <td><?= $line->getCountry()->getCountry() ?></td>
         </tr>
@@ -32,7 +32,7 @@
   <tbody>
     <?php foreach($allsuppliers as $line) : ?>
         <tr>
-            <td><a href="/company/details/<?= $line->getId() ?>"><?= $line->getName() ?></a></td>
+            <td><a href="/companies/details/<?= $line->getId() ?>"><?= $line->getName() ?></a></td>
             <td><?= $line->getTva() ?></td>
             <td><?= $line->getCountry()->getCountry() ?></td>
         </tr>

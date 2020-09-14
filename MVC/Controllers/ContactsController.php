@@ -4,6 +4,7 @@ namespace Cogit\Controllers;
 use Cogit\Core\Form;
 use Cogit\Models\ContactModel;
 use Cogit\Models\CompanyModel;
+use Cogit\Models\InvoiceModel;
 
 class ContactsController extends Controller {
     public function index()
@@ -23,7 +24,13 @@ class ContactsController extends Controller {
         $contact->hydrate($contact->find($id))->join();
 
         $invoices = (new InvoiceModel())->findBy(['idCompany' => $contact->getCompany()->getId()]);
-    
+
+        $lstInvoices = [];
+        foreach($invoices as $line){
+            $lstInvoices[] = (new InvoiceModel())->hydrate($line);
+        }
+
+        $this->render('contact/details', ['contact' => $contact, 'invoices' => $lstInvoices]);
     }
 
     public function add(){
