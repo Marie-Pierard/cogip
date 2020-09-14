@@ -26,8 +26,8 @@ class InvoicesController extends Controller
             'company' => (new InvoiceModel())->hydrate((new InvoiceModel())->find($id))->join()
         ];
 
-        $contacts = new ContactModel();
-        $details['contacts'] = $contacts->findBy(['idCompany'=>$details['company']->getIdCompany()]);
+        $contact = new ContactModel();
+        $details['contacts'] = $contact->findBy(['idCompany'=>$details['company']->getIdCompany()]);
 
         $this->render('invoices/details', $details);
     }
