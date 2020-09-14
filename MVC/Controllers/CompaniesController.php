@@ -54,17 +54,13 @@ class CompaniesController extends Controller {
         // }
         // $details['invoice'] = $detailinvoice;
 
-        // echo '<pre>';
-        // var_dump($details);
-        // echo '</pre>';
-
         $this->render('companies/details', $details);
     }
 
     
     function add(){
         $countrySelect = (new CountryModel())->findBy(['Country']);
-        $country2;
+        $country2 = [];
         foreach($countrySelect as $value){
             $country2[$value->id]=$value->Country;
         };
@@ -101,7 +97,7 @@ class CompaniesController extends Controller {
         };
     
         // On envoie le formulaire à la vue en utilisant notre méthode "create"
-        $this->render('formCompany/FormCompany', ['formCompany' => $formCompany->create()]);
+        $this->render('formCompany/formCompany', ['formCompany' => $formCompany->create()]);
     
     }
 }
