@@ -10,15 +10,24 @@ class CompaniesController extends Controller {
     {
 
         $companies = [
-            'allclients' => (new CompanyModel())->findBy(['idType'=> 1])
+            'allclients' => (new CompanyModel())->findBy(['idType'=> 1]),
+            'allsuppliers' => (new CompanyModel())->findBy(['idType'=> 2])
         ];
 
-        $country = [];
+        // set country for allclients with join
+        $allclientsCountry = [];
         foreach($companies['allclients'] as $value){
-            $country[] = (new CompanyModel())->hydrate($value)->join();
+            $allclientsCountry[] = (new CompanyModel())->hydrate($value)->join();
         }
-        $companies['allclients'] = $country;
+        $companies['allclients'] = $allclientsCountry;
 
+        //set country for allsuppliers with join
+        $allsuppliersCountry = [];
+        foreach($companies['allsuppliers'] as $value){
+            $allsuppliersCountry[] = (new CompanyModel())->hydrate($value)->join();
+        }
+        $companies['allsuppliers'] = $allsuppliersCountry;
+            
         $this->render('companies/companies', $companies);
     }
 }
