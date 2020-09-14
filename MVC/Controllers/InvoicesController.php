@@ -22,6 +22,22 @@ class InvoicesController extends Controller
         $this->render('invoices/invoice', $info);
     }
 
+    public function details(int $id)
+    {
+        $details = [
+            'company' => (new CompanyModel())->hydrate((new CompanyModel())->find($id))->join()
+        ];
+
+        $contact = new ContactModel();
+        $details['contacts'] = $contact->findBy(['idCompany'=>$details['company']->getId()]);
+
+
+        $invoice = new InvoiceModel();
+        $details['invoice'] = $invoice->findBy(['idCompany'=>$details['company']->getId()]);
+
+        $this->render('companies/details', $details);
+    }
+
     public function add(){
         // On vérifie si notre post contient les champs email et password
         if(Form::validate($_POST, ['NumberInvoice', 'date', 'Company', 'Contact'])){

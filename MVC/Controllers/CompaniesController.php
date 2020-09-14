@@ -48,9 +48,15 @@ class CompaniesController extends Controller {
         $invoice = new InvoiceModel();
         $details['invoice'] = $invoice->findBy(['idCompany'=>$details['company']->getId()]);
 
-        echo '<pre>';
-        var_dump($details);
-        echo '</pre>';
+        // $detailinvoice = [];
+        // foreach($details['invoice'] as $value){
+        //     $detailinvoice[] = (new InvoiceModel())->hydrate($value)->join();
+        // }
+        // $details['invoice'] = $detailinvoice;
+
+        // echo '<pre>';
+        // var_dump($details);
+        // echo '</pre>';
 
         $this->render('companies/details', $details);
     }
