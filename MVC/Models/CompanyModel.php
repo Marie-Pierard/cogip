@@ -15,7 +15,7 @@ class  CompanyModel extends Model
 
     public function __construct()
     {
-        $this->table = 'cogit_Company';
+        $this->table = 'cogit_company';
     }
 
 

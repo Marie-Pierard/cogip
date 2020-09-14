@@ -17,7 +17,7 @@ class InvoiceModel extends Model
 
     public function __construct()
     {
-        $this->table = 'cogit_Invoice';
+        $this->table = 'cogit_invoice';
     }
     // getter and setter for id
     /**

@@ -8,7 +8,7 @@ class TypeModel extends Model
 
     public function __construct()
     {
-        $this->table = 'cogit_Type';
+        $this->table = 'cogit_type';
     }
 
     /**

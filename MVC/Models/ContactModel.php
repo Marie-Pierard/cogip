@@ -97,7 +97,7 @@ class ContactModel extends Model
     }
     public function join(){
         $company = new CompanyModel();
-        $this->setCompany($company->hydrate($company->find($this->idCompany)));
+        $this->setCompany($company->hydrate($company->find($this->idCompany))->join());
         return $this;
     }
 

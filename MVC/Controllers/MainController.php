@@ -16,11 +16,23 @@ class MainController extends Controller
             'company' => (new CompanyModel())->limitBy(5, 'DESC')
         ];
 
-        $invoice = [];
+        $details = [];
         foreach ($info['invoice'] as $value) {
-            $invoice[] = (new InvoiceModel())->hydrate($value)->join();
+            $details[] = (new InvoiceModel())->hydrate($value)->join();
         }
-        $info['invoice'] = $invoice;
+        $info['invoice'] = $details;
+
+        $details = [];
+        foreach ($info['contact'] as $value) {
+            $details[] = (new ContactModel())->hydrate($value)->join();
+        }
+        $info['contact'] = $details;
+
+        $details = [];
+        foreach ($info['company'] as $value) {
+            $details[] = (new CompanyModel())->hydrate($value)->join();
+        }
+        $info['company'] = $details;
 
         
         $this->render('main/index', $info);
