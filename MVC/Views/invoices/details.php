@@ -1,4 +1,6 @@
-<h1 class="text-center">COGIT: Invoice Details</h1>
+<h1 class="text-center">COGIT: Invoice Details</h1></br>
+
+<h2 class="text-center">Invoice: <?= $company->getNumberInvoice()?></h2></br>
 
 <table class="table mt-3">
   <h3>Company linked to the invoice</h3>
