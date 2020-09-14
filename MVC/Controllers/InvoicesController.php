@@ -2,6 +2,7 @@
 
 namespace Cogit\Controllers;
 use Cogit\Core\Form;
+use Cogit\Models\ContactModel;
 use Cogit\Models\InvoiceModel;
 
 class InvoicesController extends Controller
@@ -17,9 +18,17 @@ class InvoicesController extends Controller
             $invoice[] = (new InvoiceModel())->hydrate($value)->join();
         }
         $info['invoices'] = $invoice;
-/*         echo "<pre>" ;
-        var_dump($info);
-        echo "</pre>"; */
         $this->render('invoices/invoice', $info);
+    }
+
+    public function details(int $id){
+        $details = [
+            'company' => (new InvoiceModel())->hydrate((new InvoiceModel())->find($id))->join()
+        ];
+
+        $contact = new ContactModel();
+        $details['contacts'] = $contact->findBy(['idCompany'=>$details['company']->getIdCompany()]);
+
+        $this->render('invoices/details', $details);
     }
 }

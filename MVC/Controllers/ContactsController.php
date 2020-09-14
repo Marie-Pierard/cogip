@@ -8,19 +8,23 @@ use Cogit\Models\CompanyModel;
 class ContactsController extends Controller {
     public function index()
     {
-        $contacte = (new ContactModel())->findAll();
+        $contacts = (new ContactModel())->findAll();
 
         $contact = [];
-        foreach ($contacte as $value) {
+        foreach ($contacts as $value) {
             $contact[] = (new ContactModel())->hydrate($value)->join();
         }
 
         $this->render('contact/contact', ['data' => $contact]);
     }
 
+    public function details(int $id){
+        $contact = new ContactModel();
+        $contact->hydrate($contact->find($id))->join();
 
-
-
+        $invoices = (new InvoiceModel())->findBy(['idCompany' => $contact->getCompany()->getId()]);
+    
+    }
 
     public function add(){
     // On vérifie si notre post contient tous les champs
