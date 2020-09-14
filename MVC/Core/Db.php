@@ -15,7 +15,11 @@ class Db extends PDO
     private const DBHOST = 'localhost';
     private const DBPORT = 3306;
     private const DBUSER = 'root';
+<<<<<<< HEAD
     private const DBPASS = '';
+=======
+    private const DBPASS = 'Marie';
+>>>>>>> 485e9fd31dacbf7dc682a6a5640277c9c876b2db
     private const DBNAME = 'cogit';
 
     private function __construct()

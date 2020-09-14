@@ -11,9 +11,9 @@
   <tbody>
     <?php foreach($invoices as $line) : ?>
       <tr>
-          <td><?= $line->getNumberInvoice() ?></td>
+          <td><a href="/invoices/details/<?= $line->getId() ?>"><?= $line->getNumberInvoice() ?></a></td>
           <td><?= $line->getDate() ?></td>
-          <td><?= $line->getCompany()->getName() ?></td>
+          <td><a href="/companies/details/<?= $line->getIdCompany() ?>"><?= $line->getCompany()->getName() ?></td>
           <td><?= $line->getCompany()->getType()->getType() ?></td>
         </tr>
     <?php endforeach; ?>

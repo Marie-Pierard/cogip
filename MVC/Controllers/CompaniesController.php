@@ -4,6 +4,8 @@ namespace Cogit\Controllers;
 
 use Cogit\Models\CompanyModel;
 use Cogit\Models\CountryModel;
+use Cogit\Models\ContactModel;
+use Cogit\Models\InvoiceModel;
 use Cogit\Core\Form;
 use Cogit\Models\UsersModel;
 
@@ -32,6 +34,28 @@ class CompaniesController extends Controller {
             
         $this->render('companies/companies', $companies);
     }
+
+    public function details(int $id)
+    {
+        $details = [
+            'company' => (new CompanyModel())->hydrate((new CompanyModel())->find($id))->join()
+        ];
+
+        $contact = new ContactModel();
+        $details['contacts'] = $contact->findBy(['idCompany'=>$details['company']->getId()]);
+
+
+        $invoice = new InvoiceModel();
+        $details['invoice'] = $invoice->findBy(['idCompany'=>$details['company']->getId()]);
+
+        echo '<pre>';
+        var_dump($details);
+        echo '</pre>';
+
+        $this->render('companies/details', $details);
+    }
+
+    
     function add(){
         $countrySelect = (new CountryModel())->findBy(['Country']);
         $country2;
