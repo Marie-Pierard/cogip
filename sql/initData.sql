@@ -1,11 +1,11 @@
-INSERT INTO cogit.cogit_Type
+INSERT INTO cogit.cogit_type
     (Type)
 VALUES
     ('Customer'),
     ('Provider')
 ;
 
-INSERT INTO cogit.cogit_Country
+INSERT INTO cogit.cogit_country
     (Country)
 VALUES
     ('United State'),
@@ -16,7 +16,7 @@ VALUES
     ('China')
 ;
 
-INSERT INTO cogit.cogit_Company
+INSERT INTO cogit.cogit_company
     (Name, Tva, idCountry, idType)
 VALUES
     ('Raviga', 'US456 654 342', 1, 1),
@@ -33,7 +33,7 @@ VALUES
     ('Pied Piper', 'EN 234 657 842', 5, 1)
 ;
 
-INSERT INTO cogit.cogit_Contact
+INSERT INTO cogit.cogit_contact
     (LastName, FirstName, Phone, Email, idCompany)
 VALUES
     ('Gregory', 'Peter', '555-4567', 'peter.gregory@raviga.com', 1),
@@ -44,7 +44,7 @@ VALUES
     ('Gilfoyle', 'Bertram', '555-0987', 'gilfoyle@piedpiper.com', 12)
 ;
 
-INSERT INTO cogit.cogit_Invoice
+INSERT INTO cogit.cogit_invoice
     (NumberInvoice, date, idCompany)
 VALUES
     ('F20190404-004', '2019-04-04', 3),
