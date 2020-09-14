@@ -14,9 +14,9 @@
   <tbody>
       <?php foreach ($invoice as $line) : ?>
         <tr>
-            <td class="text-danger font-weight-bold"><?= $line->getNumberInvoice() ?></td>
+            <td class="font-weight-bold"><a href="/invoices/details/<?= $line->getId() ?>"><?= $line->getNumberInvoice() ?></a></td>
             <td><?= $line->getDate() ?></td>
-            <td class="text-danger font-weight-bold"><?= $line->getCompany()->getName() ?></td>
+            <td class="font-weight-bold"><a href="/companies/details/<?= $line->getCompany()->getId() ?>"><?= $line->getCompany()->getName() ?></a></td>
         </tr>
     <?php endforeach; ?>
   </tbody>
@@ -35,10 +35,10 @@
   <tbody>
       <?php foreach ($contact as $line) : ?>
         <tr>
-            <td class="text-danger font-weight-bold"><?= $line->getFirstName() . ' ' . $line->getLastName() ?></td>
+            <td class="font-weight-bold"><a href="/contacts/details/<?= $line->getId() ?>"><?= $line->getFirstName() . ' ' . $line->getLastName() ?></a></td>
             <td><?= $line->getEmail() ?></td>
             <td><?= $line->getPhone() ?></td>
-            <td class="text-danger font-weight-bold"><?= $line->getCompany()->getName() ?></td>
+            <td class="font-weight-bold"><a href="/companies/details/<?= $line->getCompany()->getId() ?>"><?= $line->getCompany()->getName() ?></a></td>
         </tr>
     <?php endforeach; ?>
   </tbody>
@@ -57,7 +57,7 @@
   <tbody>
       <?php foreach ($company as $line) : ?>
         <tr>
-            <td class="text-danger font-weight-bold"><?= $line->getName() ?></td>
+            <td class="font-weight-bold"><a href="/companies/details/<?= $line->getId() ?>"><?= $line->getName() ?></a></td>
             <td><?= $line->getTva() ?></td>
             <td><?= $line->getCountry()->getCountry() ?></td>
             <td><?= $line->getType()->getType() ?></td>
