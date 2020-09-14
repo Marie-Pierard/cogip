@@ -13,7 +13,7 @@
   </thead>
   <tbody>
         <tr>
-            <td><?= $company->getCompany()->getName() ?></td>
+            <td><a href="/company/details/<?= $company->getCompany()->getId() ?>"><?= $company->getCompany()->getName() ?></a></td>
             <td><?= $company->getCompany()->getTva() ?></td>
             <td><?= $company->getCompany()->getType()->getType() ?></td>
         </tr>
@@ -33,7 +33,7 @@
   <tbody>
     <?php foreach($contacts as $line) : ?>
         <tr>
-            <td><?= $line->LastName . ' ' . $line->FirstName?></td>
+            <td><a href="/contacts/details/<?= $line->id ?>"><?= $line->LastName . ' ' . $line->FirstName?></a></td>
             <td><?= $line->Email ?></td>
             <td><?= $line->Phone ?></td>
         </tr>
