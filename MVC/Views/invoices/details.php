@@ -13,7 +13,7 @@
   </thead>
   <tbody>
         <tr>
-            <td><a href="/company/details/<?= $company->getCompany()->getId() ?>"><?= $company->getCompany()->getName() ?></a></td>
+            <td><a href="/companies/details/<?= $company->getCompany()->getId() ?>"><?= $company->getCompany()->getName() ?></a></td>
             <td><?= $company->getCompany()->getTva() ?></td>
             <td><?= $company->getCompany()->getType()->getType() ?></td>
         </tr>
