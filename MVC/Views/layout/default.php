@@ -24,11 +24,11 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/invoices">Facture</a>
+                    <a class="nav-link" href="/invoices">Invoices</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/companies">Compagnies</a>
+                    <a class="nav-link" href="/companies">Companies</a>
                 </li>
                 
                 <li class="nav-item">
