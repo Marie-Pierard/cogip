@@ -111,7 +111,9 @@ class InvoicesController extends Controller
     public function delete(int $id){
         if($_SESSION['user']['role'] === 'admin') {
             (new InvoiceModel())->delete($id);
+            $_SESSION['success'][] = 'Data deleted';
             header('Location: /contacts');
+            exit;
         }
     }
 }
