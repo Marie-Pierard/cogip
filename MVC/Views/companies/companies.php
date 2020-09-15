@@ -35,6 +35,9 @@
             <td><a href="/companies/details/<?= $line->getId() ?>"><?= $line->getName() ?></a></td>
             <td><?= $line->getTva() ?></td>
             <td><?= $line->getCountry()->getCountry() ?></td>
+            <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
+                <td><a href="/companies/delete/<?= $line->getId() ?>"><img src="/assets/images/delete.png" alt="Delete country" class="icone"></a>
+            <?php endif;?>
         </tr>
     <?php endforeach; ?>
   </tbody>
