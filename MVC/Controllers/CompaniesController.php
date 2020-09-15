@@ -95,7 +95,7 @@ class CompaniesController extends Controller {
                 'Tva'=>$TVA
             ];
             $company->requete('INSERT INTO cogit_company (idType,idCountry,Name,Tva) VALUES (:idType,:idCountry,:Name,:Tva)',$data);
-            $_SESSION['success'][] = 'Donnée bien ajoutées';
+            $_SESSION['success'][] = 'Donnée bien ajoutée';
 
         };
     
