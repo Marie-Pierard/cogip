@@ -2,7 +2,8 @@
 
 <h3>Bonjour <?= isset($_SESSION['user']['login']) ? $_SESSION['user']['login'] : '' ?>!</h3>
 
-<h5 class="text-success mt-5">5 Last Invoice</h5>
+
+<h5 class="text-secondary mt-5">5 Last Invoice</h5>
 <table class="table mt-3">
   <thead class="thead-dark">
     <tr>
@@ -22,7 +23,7 @@
   </tbody>
 </table>
 
-<h5 class="text-success mt-5">5 Last Contact</h5>
+<h5 class="text-secondary mt-5">5 Last Contact</h5>
 <table class="table mt-3">
   <thead class="thead-dark">
     <tr>
@@ -44,7 +45,7 @@
   </tbody>
 </table>
 
-<h5 class="text-success mt-5">5 Last Company</h5>
+<h5 class="text-secondary mt-5">5 Last Company</h5>
 <table class="table mt-3">
   <thead class="thead-dark">
     <tr>
