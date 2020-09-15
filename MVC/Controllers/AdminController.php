@@ -11,7 +11,7 @@ class AdminController extends Controller
         if($_SESSION['user']['role'] === 'admin') {
 
             $users = new UsersModel();
-    
+            
             $this->render('admin/users', ['data' => $users->findAll()]);
         } else {
             $_SESSION['error'][] = 'Erreur veuillez vous connecter en tant qu\'admin.';

@@ -1,4 +1,4 @@
-<h1 class="text-center pt-3git ">COGIT: Contacts Directory</h1>
+<h1 class="text-center pt-3git ">COGIP: Contacts Directory</h1>
 <table class="table mt-3">
   <thead class="thead-dark">
     <tr>

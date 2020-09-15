@@ -1,4 +1,4 @@
-<h1 class="text-center pt-3">COGIT: Companies Directory</h1>
+<h1 class="text-center pt-3">COGIP: Companies Directory</h1>
 
 <table class="table mt-3">
   <h3>Clients</h3>
