@@ -9,6 +9,9 @@
       <th scope="col">Name</th>
       <th scope="col">Tva</th>
       <th scope="col">Company Type</th>
+      <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
+          <th scope="col"></th>
+      <?php endif;?>
     </tr>
   </thead>
   <tbody>
@@ -17,7 +20,7 @@
             <td><?= $company->getCompany()->getTva() ?></td>
             <td><?= $company->getCompany()->getType()->getType() ?></td>
             <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
-              <th scope="col"></th>
+                <td><a href="/contacts/delete/<?= $line->id ?>"><img src="/assets/images/delete.png" alt="Delete invoice" class="icone"></a></td>
             <?php endif;?>
         </tr>
 
@@ -31,6 +34,9 @@
       <th scope="col">Name</th>
       <th scope="col">Email </th>
       <th scope="col">Phone</th>
+      <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
+          <th scope="col"></th>
+      <?php endif;?>
     </tr>
   </thead>
   <tbody>

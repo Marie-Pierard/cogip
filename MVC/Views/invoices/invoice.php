@@ -20,7 +20,7 @@
           <td><?= $line->getCompany()->getType()->getType() ?></td>
           <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
                 <td><a href="/invoices/delete/<?= $line->getId() ?>"><img src="/assets/images/delete.png" alt="Delete invoice" class="icone"></a></td>
-            <?php endif;?>
+          <?php endif;?>
         </tr>
     <?php endforeach; ?>
   </tbody>
