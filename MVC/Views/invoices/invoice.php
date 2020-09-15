@@ -1,4 +1,4 @@
-<h1 class="text-center">COGIT: Invoices List</h1>
+<h1 class="text-center pt-3">COGIT: Invoices List</h1>
 <table class="table mt-3">
   <thead class="thead-dark">
     <tr>
