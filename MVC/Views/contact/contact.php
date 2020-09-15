@@ -20,7 +20,7 @@
             <td><?= $line->getEmail() ?></td>
             <td><?= $line->getCompany()->getName() ?></td>
             <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
-                <td><a href="/contacts/delete/<?= $line->getId() ?>"><img src="/assets/images/delete.png" alt="Edition du rôle" class="icone"></a>
+                <td><a href="/contacts/delete/<?= $line->getId() ?>"><img src="/assets/images/delete.png" alt="Delete contact" class="icone"></a></td>
             <?php endif;?>
         </tr>
     <?php endforeach; ?>
