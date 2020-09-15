@@ -1,4 +1,4 @@
-<h1 class="text-primary">Welcome to COGIP</h1>
+<h1 class="text-primary text-center pt-3">Welcome to the COGIP</h1>
 
 <h3>Bonjour <?= isset($_SESSION['user']['login']) ? $_SESSION['user']['login'] : '' ?>!</h3>
 
