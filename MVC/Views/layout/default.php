@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 
-<body>
+<body class="bg-light">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Cogit</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -71,6 +71,16 @@
     <script src="/assets/js/jquery-3.5.1.slim.min.js"></script>
     <script src="/assets/js/popper.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
+    <?php 
+        if(isset($_SESSION['js'])) :
+            foreach($_SESSION['js'] as $file) :
+    ?>
+                <script src="/assets/js/<?= $file ?>.js"></script>
+    <?php
+            endforeach;
+        endif;
+        unset($_SESSION['js']);
+    ?>
 </body>
 
 </html>
