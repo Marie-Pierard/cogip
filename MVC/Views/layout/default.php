@@ -19,25 +19,25 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
+                <li class="nav-item<?= (isset($_SESSION['page']) && $_SESSION['page'] == '/') ?  ' active' : '' ?>">
+                    <a class="nav-link" href="/">Accueil</a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item<?= (isset($_SESSION['page']) && $_SESSION['page'] == '/invoices') ?  ' active' : '' ?>">
                     <a class="nav-link" href="/invoices">Invoices</a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item<?= (isset($_SESSION['page']) && $_SESSION['page'] == '/companies') ?  ' active' : '' ?>">
                     <a class="nav-link" href="/companies">Companies</a>
                 </li>
                 
-                <li class="nav-item">
+                <li class="nav-item<?= (isset($_SESSION['page']) && $_SESSION['page'] == '/contacts') ?  ' active' : '' ?>">
                     <a class="nav-link" href="/contacts">Contacts</a>
                 </li>
 
                 <?php if(isset($_SESSION['user']) && !empty($_SESSION['user']['id'])) : ?>
                     <?php if($_SESSION['user']['role'] === 'admin') : ?>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown<?= (isset($_SESSION['page']) && $_SESSION['page'] == '/admin') ?  ' active' : '' ?>">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Admin
                             </a>

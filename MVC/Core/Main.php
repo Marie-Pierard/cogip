@@ -1,6 +1,8 @@
 <?php
 namespace Cogit\Core;
 
+use Cogit\Controllers\Controller;
+
 class Main
 {
     public function start()
@@ -24,11 +26,14 @@ class Main
         }
         // On sépare les paramètres et on les met dans le tableau $params
         $params = explode('/', $_GET['p']);
+        $_SESSION['page'] = '/';
 
         // Si au moins 1 paramètre existe
         if($params[0] != ""){
             // On sauvegarde le 1er paramètre dans $controller en mettant sa 1ère lettre en majuscule, en ajoutant le namespace des controleurs et en ajoutant "Controller" à la fin
-            $controller = '\\Cogit\\Controllers\\'.ucfirst(array_shift($params)).'Controller';
+            $cont = array_shift($params);
+            $controller = '\\Cogit\\Controllers\\'.ucfirst($cont).'Controller';
+            $_SESSION['page'] = '/' . $cont  ;
 
             // On sauvegarde le 2ème paramètre dans $action si il existe, sinon index
             $action = isset($params[0]) ? array_shift($params) : 'index';
