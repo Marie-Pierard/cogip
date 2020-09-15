@@ -77,5 +77,12 @@ class ContactsController extends Controller {
     $this->render('contact/add', ['newContactForm' => $form->create()]);
     }
 
+    public function delete(int $id){
+        if($_SESSION['user']['role'] === 'admin') {
+            (new ContactModel())->delete($id);
+            header('Location: /contacts');
+        }
+    }
+
 
 }
