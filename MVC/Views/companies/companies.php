@@ -1,7 +1,7 @@
 <h1 class="text-center">COGIT: Companies Directory</h1>
 
 <table class="table mt-3">
-  <p>Clients</p>
+  <h3>Clients</h3>
   <thead class="thead-dark">
     <tr>
       <th scope="col">Name</th>
@@ -21,7 +21,7 @@
 </table>
 
 <table class="table mt-3">
-  <p>Suppliers</p>
+  <h3>Suppliers</h3>
   <thead class="thead-dark">
     <tr>
       <th scope="col">Name</th>
