@@ -1,4 +1,4 @@
-<h1 class="text-center pt-3">COGIT: Invoice Details</h1></br>
+<h1 class="text-center pt-3">COGIP: Invoice Details</h1></br>
 
 <h2 class="text-center">Invoice: <?= $company->getNumberInvoice()?></h2></br>
 
