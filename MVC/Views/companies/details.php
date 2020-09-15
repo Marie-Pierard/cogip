@@ -47,9 +47,9 @@
   <tbody>
   <?php foreach($invoice as $line) : ?>
         <tr>
-            <td><a href="/invoices/details/<?= $line->id ?>"><?= $line->NumberInvoice?></a></td>
-            <td><?= $line->date ?></td>
-            <td><?= $contacts->LastName ?></td>
+            <td><a href="/invoices/details/<?= $line->getId() ?>"><?= $line->getNumberInvoice()?></a></td>
+            <td><?= $line->getDate() ?></td>
+            <td><a href="/contacts/details/<?= $line->getContact()->getId()?>"><?= $line->getContact()->getLastName() . ' ' . $line->getContact()->getFirstName() ?></td>
         </tr>
     <?php endforeach; ?>
   </tbody>
