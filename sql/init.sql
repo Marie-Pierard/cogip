@@ -20,7 +20,6 @@ CREATE TABLE IF NOT EXISTS cogit_company(
     idCountry INT(11),
     Name VARCHAR(50),
     Tva VARCHAR(15),
-    Phone VARCHAR(12),
     PRIMARY KEY (id),
     FOREIGN KEY (idType) REFERENCES cogit_type(id),
     FOREIGN KEY (idCountry) REFERENCES cogit_country(id)
