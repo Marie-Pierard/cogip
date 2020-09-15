@@ -103,4 +103,11 @@ class CompaniesController extends Controller {
         $this->render('formCompany/formCompany', ['formCompany' => $formCompany->create()]);
     
     }
+
+    public function delete(int $id){
+        if($_SESSION['user']['role'] === 'admin') {
+            (new CompanyModel())->delete($id);
+            header('Location: /contacts');
+        }
+    }
 }

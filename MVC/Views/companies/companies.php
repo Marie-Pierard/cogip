@@ -7,6 +7,9 @@
       <th scope="col">Name</th>
       <th scope="col">Tva</th>
       <th scope="col">Country</th>
+      <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
+        <th scope="col"></th>
+      <?php endif;?>
     </tr>
   </thead>
   <tbody>
@@ -15,6 +18,9 @@
             <td><a href="/companies/details/<?= $line->getId() ?>"><?= $line->getName() ?></a></td>
             <td><?= $line->getTva() ?></td>
             <td><?= $line->getCountry()->getCountry() ?></td>
+            <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
+                <td><a href="/companies/delete/<?= $line->getId() ?>"><img src="/assets/images/delete.png" alt="Delete country" class="icone"></a>
+            <?php endif;?>
         </tr>
     <?php endforeach; ?>
   </tbody>
@@ -27,6 +33,9 @@
       <th scope="col">Name</th>
       <th scope="col">Tva</th>
       <th scope="col">Country</th>
+      <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
+        <th scope="col"></th>
+      <?php endif;?>
     </tr>
   </thead>
   <tbody>
@@ -35,6 +44,9 @@
             <td><a href="/companies/details/<?= $line->getId() ?>"><?= $line->getName() ?></a></td>
             <td><?= $line->getTva() ?></td>
             <td><?= $line->getCountry()->getCountry() ?></td>
+            <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
+                <td><a href="/companies/delete/<?= $line->getId() ?>"><img src="/assets/images/delete.png" alt="Delete country" class="icone"></a></td>
+            <?php endif;?>
         </tr>
     <?php endforeach; ?>
   </tbody>
