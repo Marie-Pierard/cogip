@@ -36,6 +36,7 @@ class InvoicesController extends Controller
 
     public function add()
     {
+        $_SESSION['js'][] = 'CompanyContact';
         // On vérifie si notre post contient les champs email et password
         if (Form::validate($_POST, ['NumberInvoice', 'date', 'Company', 'Contact'])) {
             // On nettoie le login, l'e-mail et on chiffre le mot de passe
@@ -79,6 +80,31 @@ class InvoicesController extends Controller
             ->ajoutButton('New Invoice', ['class' => 'btn btn-primary mt-3'])
             ->finForm();
 
-        $this->render('invoices/add', ['invoiceForm' => $form->create()]);
+        $this->render('invoices/add', ['invoiceForm' => $form->create(), 'dataJs' => $this->generateDataJs()]);
+    }
+
+    private function generateDataJs(){
+        $data = [];
+        $contactAll = (new ContactModel())->findAll();
+        $companyAll = (new CompanyModel())->findAll();
+
+        foreach($companyAll as $company){
+            $data[$company->id] = [];
+            foreach($contactAll as $contact){
+                if($contact->idCompany == $company->id) $data[$company->id][] = $contact->id;
+            }
+        }
+        
+        $html = '';
+        foreach($data as $key => $line){
+            if(!empty($line)){
+                $html .= "<span id=\"company-{$key}\" data-contact=\"";
+                foreach($line as $contact){
+                    $html .= "{$contact}-";
+                }
+                $html = substr($html, 0, -1)."\"></span>";
+            }
+        }
+        return $html;
     }
 }

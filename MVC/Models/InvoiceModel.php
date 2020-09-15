@@ -131,7 +131,7 @@ class InvoiceModel extends Model
         
         if($this->idContact != null){
             $contact = new ContactModel();
-            $this->setContact($company->hydrate($contact->find($this->idContact)));
+            $this->setContact($contact->hydrate($contact->find($this->idContact)));
             $this->contact->join();
         } else {
             $this->setContact(null);
