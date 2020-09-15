@@ -37,6 +37,7 @@ class Main
 
             // On sauvegarde le 2ème paramètre dans $action si il existe, sinon index
             $action = isset($params[0]) ? array_shift($params) : 'index';
+            $_SESSION['page_view'] = $action;
 
             // Si la class n'existe pas on retourne à la page d'acceuil
             if(!class_exists($controller)){

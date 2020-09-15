@@ -44,8 +44,8 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="/admin/view">Dashboard</a>
                             <a class="dropdown-item" href="/contacts/add">New contact</a>
-                            <a class="dropdown-item" href="/invoices/add">New invoice</a>
                             <a class="dropdown-item" href="/companies/add">New company</a>
+                            <a class="dropdown-item" href="/invoices/add">New invoice</a>
                         </div>
                     </li>
                     <?php endif; ?>
@@ -53,10 +53,10 @@
                         <a class="nav-link" href="/users/logout">Deconnexion</a>
                     </li>
                 <?php else : ?>
-                    <li class="nav-item">
+                    <li class="nav-item<?= (isset($_SESSION['page']) && $_SESSION['page'] == '/users' && isset($_SESSION['page_view']) && $_SESSION['page_view'] == 'login') ?  ' active' : '' ?>">
                         <a class="nav-link" href="/users/login">Connexion</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item<?= (isset($_SESSION['page']) && $_SESSION['page'] == '/users' && isset($_SESSION['page_view']) && $_SESSION['page_view'] == 'register') ?  ' active' : '' ?>">
                         <a class="nav-link" href="/users/register">Inscription</a>
                     </li>
                 <?php endif; ?>  
