@@ -1,9 +1,9 @@
 <?php
 
-namespace Cogit\Controllers;
+namespace Cogip\Controllers;
 
-use Cogit\Core\Form;
-use Cogit\Models\UsersModel;
+use Cogip\Core\Form;
+use Cogip\Models\UsersModel;
 
 class AdminController extends Controller
 {
@@ -14,7 +14,7 @@ class AdminController extends Controller
             
             $this->render('admin/users', ['data' => $users->findAll()]);
         } else {
-            $_SESSION['error'][] = 'Erreur veuillez vous connecter en tant qu\'admin.';
+            $_SESSION['error'][] = 'Error, please log-in as an admin.';
             header('Location: /');
         }
     }
@@ -28,22 +28,22 @@ class AdminController extends Controller
                 $role = $user->getRole();
                 $user->setRole($_POST['role']);
                 $user->update();
-                $_SESSION['success'][] = "Modification du role de {$user->getLogin()} de {$role} à {$user->getRole()}.";
+                $_SESSION['success'][] = "Role of {$user->getLogin()} changed from {$role} to {$user->getRole()}.";
                 header('Location: /admin/view');
                 exit;
             }
 
             $form = new Form;
             $form->debutForm('post', '#', ['style'=>'width: 250px; margin: auto;'])
-                ->ajoutLabelFor('role', "Role de {$user->getLogin()}:")
+                ->ajoutLabelFor('role', "Role of {$user->getLogin()}:")
                 ->ajoutSelect('role', ['user' => ' User', 'moderator' => 'Moderateur', 'admin' =>'Admin'], ['id' => 'role', 'class' => 'form-control'])
-                ->ajoutButton('Modifier', ['class' => 'btn btn-primary mt-3'])
+                ->ajoutButton('Modify', ['class' => 'btn btn-primary mt-3'])
                 ->finForm()
             ;
 
             $this->render('admin/edit', ['form' => $form->create()]);
         } else {
-            $_SESSION['error'][] = 'Erreur veuillez vous connecter en tant qu\'admin.';
+            $_SESSION['error'][] = 'Error, please log-in as an admin.';
             header('Location: /');
         }
     }

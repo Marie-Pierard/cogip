@@ -1,9 +1,9 @@
 <table class="table mt-3">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">Login</th>
+      <th scope="col">Username</th>
       <th scope="col">Email</th>
-      <th scope="col">Rôle</th>
+      <th scope="col">Role</th>
     </tr>
   </thead>
   <tbody>

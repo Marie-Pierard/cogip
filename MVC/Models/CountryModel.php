@@ -1,5 +1,5 @@
 <?php
-namespace Cogit\Models;
+namespace Cogip\Models;
 
 class CountryModel extends Model
 {
@@ -8,7 +8,7 @@ class CountryModel extends Model
 
     public function __construct()
     {
-        $this->table = 'cogit_country';
+        $this->table = 'cogip_country';
     }
 
     /**

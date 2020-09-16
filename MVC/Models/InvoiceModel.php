@@ -1,5 +1,5 @@
 <?php
-namespace Cogit\Models;
+namespace Cogip\Models;
 
 class InvoiceModel extends Model
 {
@@ -17,7 +17,7 @@ class InvoiceModel extends Model
 
     public function __construct()
     {
-        $this->table = 'cogit_invoice';
+        $this->table = 'cogip_invoice';
     }
     // getter and setter for id
     /**

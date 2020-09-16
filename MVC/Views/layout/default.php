@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item<?= (isset($_SESSION['page']) && $_SESSION['page'] == '/') ?  ' active' : '' ?>">
-                    <a class="nav-link" href="/">Accueil</a>
+                    <a class="nav-link" href="/">Home</a>
                 </li>
 
                 <li class="nav-item<?= (isset($_SESSION['page']) && $_SESSION['page'] == '/invoices') ?  ' active' : '' ?>">
@@ -50,14 +50,14 @@
                     </li>
                     <?php endif; ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="/users/logout">Deconnexion</a>
+                        <a class="nav-link" href="/users/logout">Log out</a>
                     </li>
                 <?php else : ?>
                     <li class="nav-item<?= (isset($_SESSION['page']) && $_SESSION['page'] == '/users' && isset($_SESSION['page_view']) && $_SESSION['page_view'] == 'login') ?  ' active' : '' ?>">
-                        <a class="nav-link" href="/users/login">Connexion</a>
+                        <a class="nav-link" href="/users/login">Log in</a>
                     </li>
                     <li class="nav-item<?= (isset($_SESSION['page']) && $_SESSION['page'] == '/users' && isset($_SESSION['page_view']) && $_SESSION['page_view'] == 'register') ?  ' active' : '' ?>">
-                        <a class="nav-link" href="/users/register">Inscription</a>
+                        <a class="nav-link" href="/users/register">Sign up</a>
                     </li>
                 <?php endif; ?>  
             </ul>

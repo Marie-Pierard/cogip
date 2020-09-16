@@ -1,5 +1,5 @@
 <?php
-namespace Cogit\Models;
+namespace Cogip\Models;
 
 class TypeModel extends Model
 {
@@ -8,7 +8,7 @@ class TypeModel extends Model
 
     public function __construct()
     {
-        $this->table = 'cogit_type';
+        $this->table = 'cogip_type';
     }
 
     /**

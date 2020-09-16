@@ -1,5 +1,5 @@
 <?php 
-namespace Cogit\Models;
+namespace Cogip\Models;
 
 class ContactModel extends Model
 {
@@ -13,7 +13,7 @@ class ContactModel extends Model
 
     public function __construct()
     {
-        $this->table = 'cogit_contact';
+        $this->table = 'cogip_contact';
     }
 
     /**

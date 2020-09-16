@@ -1,38 +1,39 @@
 <?php
 
-namespace Cogit\Controllers;
+namespace Cogip\Controllers;
 
-use Cogit\Models\CompanyModel;
-use Cogit\Models\CountryModel;
-use Cogit\Models\ContactModel;
-use Cogit\Models\InvoiceModel;
-use Cogit\Core\Form;
-use Cogit\Models\UsersModel;
+use Cogip\Models\CompanyModel;
+use Cogip\Models\CountryModel;
+use Cogip\Models\ContactModel;
+use Cogip\Models\InvoiceModel;
+use Cogip\Core\Form;
+use Cogip\Models\UsersModel;
 
-class CompaniesController extends Controller {
-    
+class CompaniesController extends Controller
+{
+
     public function index()
     {
 
         $companies = [
-            'allclients' => (new CompanyModel())->findBy(['idType'=> 1]),
-            'allsuppliers' => (new CompanyModel())->findBy(['idType'=> 2])
+            'allclients' => (new CompanyModel())->findBy(['idType' => 1]),
+            'allsuppliers' => (new CompanyModel())->findBy(['idType' => 2])
         ];
 
         // set country for allclients with join
         $allclientsCountry = [];
-        foreach($companies['allclients'] as $value){
+        foreach ($companies['allclients'] as $value) {
             $allclientsCountry[] = (new CompanyModel())->hydrate($value)->join();
         }
         $companies['allclients'] = $allclientsCountry;
 
         //set country for allsuppliers with join
         $allsuppliersCountry = [];
-        foreach($companies['allsuppliers'] as $value){
+        foreach ($companies['allsuppliers'] as $value) {
             $allsuppliersCountry[] = (new CompanyModel())->hydrate($value)->join();
         }
         $companies['allsuppliers'] = $allsuppliersCountry;
-            
+
         $this->render('companies/companies', $companies);
     }
 
@@ -43,14 +44,14 @@ class CompaniesController extends Controller {
         ];
 
         $contact = new ContactModel();
-        $details['contacts'] = $contact->findBy(['idCompany'=>$details['company']->getId()]);
+        $details['contacts'] = $contact->findBy(['idCompany' => $details['company']->getId()]);
 
 
         $invoice = new InvoiceModel();
-        $details['invoice'] = $invoice->findBy(['idCompany'=>$details['company']->getId()]);
+        $details['invoice'] = $invoice->findBy(['idCompany' => $details['company']->getId()]);
 
         $detailinvoice = [];
-        foreach($details['invoice'] as $value){
+        foreach ($details['invoice'] as $value) {
             $detailinvoice[] = (new InvoiceModel())->hydrate($value)->join();
         }
         $details['invoice'] = $detailinvoice;
@@ -58,60 +59,59 @@ class CompaniesController extends Controller {
         $this->render('companies/details', $details);
     }
 
-    function add(){
-        if($_SESSION['user']['role'] === 'admin' OR $_SESSION['user']['role'] === 'moderator' ) {
-        $countrySelect = (new CountryModel())->findBy(['Country']);
-        $country2 = [];
-        foreach($countrySelect as $value){
-            $country2[$value->id]=$value->Country;
-        };
-        $formCompany = new Form($_POST);
-    
-        // On ajoute chacune des parties qui nous intéressent
-        $formCompany->debutForm('post', '#', ['style'=>'width: 250px; margin: auto;'])
-            ->ajoutLabelFor('Name', 'Company Name')
-            ->ajoutInput('Name', 'Name', ['id' => 'Name', 'class' => 'form-control'])
-            ->ajoutLabelFor('TVA', 'TVA')
-            ->ajoutInput('TVA', 'TVA', ['id' => 'Tva', 'class' => 'form-control'])
-            ->ajoutLabelFor('CountrySelect', 'Select a country')
-            ->ajoutSelect("Country", $country2,['id'=>"CountrySelect",'class'=>'form-control']) 
-            ->ajoutLabelFor('CompanyType', 'Select a type')
-            ->ajoutSelect("Type", [1=>'Customer',2=>'Provider'],['id'=>"TypeSelect",'class'=>'form-control']) 
-            ->ajoutButton('Add', ['class' => 'btn btn-primary mt-3'])
-            ->finForm()
-        ;
-        if (isset($_POST['Name']) AND isset($_POST['TVA']) AND isset($_POST['Country']) AND isset($_POST['Type'])) {
-            $companyName = strip_tags($_POST['Name']);
-            $TVA = strip_tags($_POST['TVA']);
-            $country = $_POST['Country'];
-            $type = $_POST['Type'];
-            $company = new CompanyModel();
-            $data = [
-                'idType'=>$type,
-                'idCountry'=>$country,
-                'Name'=>$companyName,
-                'Tva'=>$TVA
-            ];
-            $company->requete('INSERT INTO cogit_company (idType,idCountry,Name,Tva) VALUES (:idType,:idCountry,:Name,:Tva)',$data);
-            $_SESSION['success'][] = 'Donnée bien ajoutée';
-            header('Location: /companies/add');
-            exit;
-        };
-    
-        // On envoie le formulaire à la vue en utilisant notre méthode "create"
-        $this->render('formCompany/formCompany', ['formCompany' => $formCompany->create()]);
-    
-        }
-        else {
-            $_SESSION['error'][] = 'Erreur veuillez vous connecter en tant qu\'admin ou modérateur';
+    function add()
+    {
+        if ($_SESSION['user']['role'] === 'admin' or $_SESSION['user']['role'] === 'moderator') {
+            $countrySelect = (new CountryModel())->findBy(['Country']);
+            $country2 = [];
+            foreach ($countrySelect as $value) {
+                $country2[$value->id] = $value->Country;
+            };
+            $formCompany = new Form($_POST);
+
+            // On ajoute chacune des parties qui nous intéressent
+            $formCompany->debutForm('post', '#', ['style' => 'width: 250px; margin: auto;'])
+                ->ajoutLabelFor('Name', 'Company Name')
+                ->ajoutInput('Name', 'Name', ['id' => 'Name', 'class' => 'form-control'])
+                ->ajoutLabelFor('TVA', 'TVA')
+                ->ajoutInput('TVA', 'TVA', ['id' => 'Tva', 'class' => 'form-control'])
+                ->ajoutLabelFor('CountrySelect', 'Select a country')
+                ->ajoutSelect("Country", $country2, ['id' => "CountrySelect", 'class' => 'form-control'])
+                ->ajoutLabelFor('CompanyType', 'Select a type')
+                ->ajoutSelect("Type", [1 => 'Customer', 2 => 'Provider'], ['id' => "TypeSelect", 'class' => 'form-control'])
+                ->ajoutButton('Add', ['class' => 'btn btn-primary mt-3'])
+                ->finForm();
+            if (isset($_POST['Name']) and isset($_POST['TVA']) and isset($_POST['Country']) and isset($_POST['Type'])) {
+                $companyName = strip_tags($_POST['Name']);
+                $TVA = strip_tags($_POST['TVA']);
+                $country = $_POST['Country'];
+                $type = $_POST['Type'];
+                $company = new CompanyModel();
+                $data = [
+                    'idType' => $type,
+                    'idCountry' => $country,
+                    'Name' => $companyName,
+                    'Tva' => $TVA
+                ];
+                $company->requete('INSERT INTO cogip_company (idType,idCountry,Name,Tva) VALUES (:idType,:idCountry,:Name,:Tva)', $data);
+                $_SESSION['success'][] = 'Data added.';
+                header('Location: /companies/add');
+                exit;
+            };
+
+            // On envoie le formulaire à la vue en utilisant notre méthode "create"
+            $this->render('formCompany/formCompany', ['formCompany' => $formCompany->create()]);
+        } else {
+            $_SESSION['error'][] = 'Error, please log-in as a moderator or an admin.';
             header('Location: /');
-            }
+        }
     }
 
-    public function delete(int $id){
-        if($_SESSION['user']['role'] === 'admin') {
+    public function delete(int $id)
+    {
+        if ($_SESSION['user']['role'] === 'admin') {
             (new CompanyModel())->delete($id);
-            $_SESSION['success'][] = 'Data deleted';
+            $_SESSION['success'][] = 'Data deleted.';
             header('Location: /contacts');
             exit;
         }

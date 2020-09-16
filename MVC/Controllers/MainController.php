@@ -1,10 +1,10 @@
 <?php
 
-namespace Cogit\Controllers;
+namespace Cogip\Controllers;
 
-use Cogit\Models\InvoiceModel;
-use Cogit\Models\ContactModel;
-use Cogit\Models\CompanyModel;
+use Cogip\Models\InvoiceModel;
+use Cogip\Models\ContactModel;
+use Cogip\Models\CompanyModel;
 
 class MainController extends Controller
 {

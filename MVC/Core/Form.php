@@ -1,6 +1,6 @@
 <?php
 
-namespace Cogit\Core;
+namespace cogip\Core;
 
 class Form
 {

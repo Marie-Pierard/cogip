@@ -2,7 +2,7 @@
 
 <table>
     <tr>
-        <td>TVA</td>
+        <td>VAT</td>
         <td class="pl-2 pr-2">:</td>
         <td><?= $company->getTva() ?></td>
     </tr>
