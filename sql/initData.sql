@@ -70,3 +70,10 @@ VALUES
     ('F20170404-001', '2017-04-04', 12, 6),
     ('F20170403-654', '2017-04-03', 1, 1)
 ;
+
+INSERT INTO cogip.cogip_users
+    (login, email, psw, role)
+VALUES
+    ('Jean-Christian', 'jean-christian.ranu@cogip.com', '$argon2i$v=19$m=65536,t=4,p=1$SXJoaXA3cmNVT3JpZjVuYg$GAtJ/6cI9wSDHZrKKMdy8P5fNlKqOz0lxrUHDTNHF08', 'admin'),
+    ('Muriel', 'muriel.perrache@cogip.com', '$argon2i$v=19$m=65536,t=4,p=1$bFc1dmpSVkp5eUtiZnNDWA$bDDD4fiWcBCgmyhCYk/EukioheyVoFrYCgL+tRD/l3w', 'moderator')
+;
