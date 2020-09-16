@@ -1,31 +1,31 @@
-CREATE DATABASE IF NOT EXISTS cogit DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE DATABASE IF NOT EXISTS cogip DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-use cogit;
+use cogip;
 SET NAMES utf8;
-CREATE TABLE IF NOT EXISTS cogit_type(
+CREATE TABLE IF NOT EXISTS cogip_type(
     id INT NOT NULL AUTO_INCREMENT,
     type VARCHAR(50),
     PRIMARY KEY(id)
 );
 
-CREATE TABLE IF NOT EXISTS cogit_country(
+CREATE TABLE IF NOT EXISTS cogip_country(
     id INT NOT NULL AUTO_INCREMENT,
     Country VARCHAR(50),
     PRIMARY KEY(id)
 );
 
-CREATE TABLE IF NOT EXISTS cogit_company(
+CREATE TABLE IF NOT EXISTS cogip_company(
     id INT NOT NULL AUTO_INCREMENT,
     idType INT(11),
     idCountry INT(11),
     Name VARCHAR(50),
     Tva VARCHAR(15),
     PRIMARY KEY (id),
-    FOREIGN KEY (idType) REFERENCES cogit_type(id),
-    FOREIGN KEY (idCountry) REFERENCES cogit_country(id)
+    FOREIGN KEY (idType) REFERENCES cogip_type(id),
+    FOREIGN KEY (idCountry) REFERENCES cogip_country(id)
 );
 
-CREATE TABLE IF NOT EXISTS cogit_contact(
+CREATE TABLE IF NOT EXISTS cogip_contact(
     id INT NOT NULL AUTO_INCREMENT,
     idCompany INT(11),
     LastName VARCHAR(50),
@@ -33,21 +33,21 @@ CREATE TABLE IF NOT EXISTS cogit_contact(
     Phone VARCHAR(12),
     Email VARCHAR(50),
     PRIMARY KEY(id),
-    FOREIGN KEY (idCompany) REFERENCES cogit_company(id)
+    FOREIGN KEY (idCompany) REFERENCES cogip_company(id)
 );
 
-CREATE TABLE IF NOT EXISTS cogit_invoice(
+CREATE TABLE IF NOT EXISTS cogip_invoice(
     id INT NOT NULL AUTO_INCREMENT,
     idCompany INT(11),
     idContact INT(11),
     NumberInvoice VARCHAR(13),
     date date NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (idCompany) REFERENCES cogit_company(id),
-    FOREIGN KEY (idContact) REFERENCES cogit_contact(id)
+    FOREIGN KEY (idCompany) REFERENCES cogip_company(id),
+    FOREIGN KEY (idContact) REFERENCES cogip_contact(id)
 );
 
-CREATE TABLE IF NOT EXISTS cogit_users(
+CREATE TABLE IF NOT EXISTS cogip_users(
     id INT NOT NULL AUTO_INCREMENT,
     login VARCHAR(50),
     email VARCHAR(50),
