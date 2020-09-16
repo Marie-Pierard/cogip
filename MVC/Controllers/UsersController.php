@@ -34,7 +34,7 @@ class UsersController extends Controller
         }
 
         // On instancie le formulaire
-        $form = new Form;
+        $form = new Form($_POST);
 
         // On ajoute chacune des parties qui nous intéressent
         $form->debutForm('post', '#', ['style'=>'width: 250px; margin: auto;'])
@@ -72,7 +72,7 @@ class UsersController extends Controller
             $_SESSION['warning'][] = 'Attention veuillez remplir les champs correctement.';
         }
 
-        $form = new Form;
+        $form = new Form($_POST);
 
         $form->debutForm('post', '#', ['style'=>'width: 250px; margin: auto;'])
             ->ajoutLabelFor('login', 'Votre identifiant')

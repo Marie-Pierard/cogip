@@ -5,6 +5,12 @@ namespace Cogit\Core;
 class Form
 {
     private $formCode = '';
+    private $defaultValues;
+
+    public function __construct($defaultValues = [])
+    {
+        $this->defaultValues = $defaultValues;
+    }
 
     /**
      * Générer le formulaire HTML
@@ -122,6 +128,11 @@ class Form
         // On crée la balise
         $this->formCode .= "<input type='$type' name='$nom' ";
 
+        // On verifie s'il y as une valeur par défaut
+        if(array_key_exists($nom, $this->defaultValues)){
+            $attributs['value'] = $this->defaultValues[$nom];
+        }
+
         // On ajoute les attributs
         if ($attributs) {
             $this->formCode .= $this->ajoutAttributs( $attributs );
@@ -144,6 +155,9 @@ class Form
     function ajoutTextarea(string $nom, string $valeur = '', $attributs = [] ) {
         // On ouvre la balise
         $this->formCode .= "<textarea name='$nom' ";
+
+        // On verifie s'il y as une valeur par défaut
+        $valeur = (array_key_exists($nom, $this->defaultValues)) ? $this->defaultValues[$nom] : '';
 
         // On ajoute les attributs
         if ($attributs) {
@@ -169,6 +183,9 @@ class Form
         // On crée le select
         $this->formCode .= "<select name='$nom'";
 
+        // On verifie s'il y as une valeur par défaut
+        $default = (array_key_exists($nom, $this->defaultValues)) ? $this->defaultValues[$nom] : null;
+
         // On ajoute les attributs
         if ($attributs) {
             $this->formCode .= $this->ajoutAttributs( $attributs );
@@ -179,7 +196,8 @@ class Form
 
         // On ajoute les options
         foreach ( $options as $valeur => $texte ) {
-            $this->formCode .= "<option value='$valeur'>$texte</option>";
+            $selected = $default==$valeur? ' selected' : '';
+            $this->formCode .= "<option value='$valeur'$selected>$texte</option>";
         }
 
         // On ferme le select

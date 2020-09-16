@@ -53,9 +53,6 @@ class CompaniesController extends Controller {
             $detailinvoice[] = (new InvoiceModel())->hydrate($value)->join();
         }
         $details['invoice'] = $detailinvoice;
-        // echo '<pre>';
-        // var_dump($detailinvoice);
-        // echo '</pre>';
 
         $this->render('companies/details', $details);
     }
@@ -67,7 +64,7 @@ class CompaniesController extends Controller {
         foreach($countrySelect as $value){
             $country2[$value->id]=$value->Country;
         };
-        $formCompany = new Form();
+        $formCompany = new Form($_POST);
     
         // On ajoute chacune des parties qui nous intéressent
         $formCompany->debutForm('post', '#', ['style'=>'width: 250px; margin: auto;'])
@@ -96,7 +93,8 @@ class CompaniesController extends Controller {
             ];
             $company->requete('INSERT INTO cogit_company (idType,idCountry,Name,Tva) VALUES (:idType,:idCountry,:Name,:Tva)',$data);
             $_SESSION['success'][] = 'Donnée bien ajoutée';
-
+            header('Location: /companies/add');
+            exit;
         };
     
         // On envoie le formulaire à la vue en utilisant notre méthode "create"

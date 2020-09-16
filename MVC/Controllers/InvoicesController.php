@@ -66,7 +66,7 @@ class InvoicesController extends Controller
             $contactList[($line->id)] = $line->LastName . " " . $line->FirstName;
         }
 
-        $form = new Form;
+        $form = new Form($_POST);
 
         $form->debutForm('post', '#', ['style' => 'width: 450px; margin: auto;'])
             ->ajoutLabelFor('NumberInvoice', 'Number of the invoice')
