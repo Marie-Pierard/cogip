@@ -84,7 +84,7 @@ class InvoicesController extends Controller
         $this->render('invoices/add', ['invoiceForm' => $form->create(), 'dataJs' => $this->generateDataJs()]);
     }
     else {
-        $_SESSION['error'][] = 'Error, please log-in as a moderator or an admin';
+        $_SESSION['error'][] = 'Error, please log-in as a moderator or an admin.';
         header('Location: /');
         }
     }
