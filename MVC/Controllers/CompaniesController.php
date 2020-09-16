@@ -107,12 +107,26 @@ class CompaniesController extends Controller
         }
     }
 
-    public function delete(int $id)
-    {
-        if ($_SESSION['user']['role'] === 'admin') {
+    public function delete(int $id){
+        $details = [
+            'company' => (new CompanyModel())->hydrate((new CompanyModel())->find($id))->join()
+        ];
+        if($_SESSION['user']['role'] === 'admin') {
+            $invoice = new InvoiceModel();
+            $toDeleteInvoices['invoice'] = $invoice->findBy(['idCompany'=>$details['company']->getId()]);
+            foreach($toDeleteInvoices['invoice'] as $value){
+                $idInvoice = $value->id;
+                ($invoice)->delete($idInvoice);
+            };
+            $contact = new ContactModel();
+            $toDeleteContacts['contact'] = $contact->findBy(['idCompany'=>$details['company']->getId()]);
+            foreach($toDeleteContacts['contact'] as $value){
+                $idContact = $value->id;
+                ($contact)->delete($idContact);
+            };
             (new CompanyModel())->delete($id);
-            $_SESSION['success'][] = 'Data deleted.';
-            header('Location: /contacts');
+            $_SESSION['success'][] = 'Company and linked contact and invoices deleted';
+            header('Location: /companies');
             exit;
         }
     }

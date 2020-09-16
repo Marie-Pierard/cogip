@@ -86,11 +86,19 @@ class ContactsController extends Controller
         }
     }
 
-    public function delete(int $id)
-    {
-        if ($_SESSION['user']['role'] === 'admin') {
+    public function delete(int $id){
+        $details = [
+            'contact' => (new ContactModel())->hydrate((new ContactModel())->find($id))->join()
+        ];
+        if($_SESSION['user']['role'] === 'admin') {
+            $invoice = new InvoiceModel();
+            $toDeleteInvoices['invoice'] = $invoice->findBy(['idContact'=>$details['contact']->getId()]);
+            foreach($toDeleteInvoices['invoice'] as $value){
+                $idInvoice = $value->id;
+                ($invoice)->delete($idInvoice);
+            };
             (new ContactModel())->delete($id);
-            $_SESSION['success'][] = 'Data deleted.';
+            $_SESSION['success'][] = 'Contact and linked invoices deleted';
             header('Location: /contacts');
             exit;
         }
