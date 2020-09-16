@@ -103,4 +103,60 @@ class ContactsController extends Controller
             exit;
         }
     }
+
+    public function update(int $id){
+        if ($_SESSION['user']['role'] === 'admin') {
+            $contact = (new ContactModel())->hydrate((new ContactModel())->find($id));
+            $valueImport = [
+                'first_name' => $contact->getFirstName(),
+                'last_name' => $contact->getLastName(),
+                'phone' => $contact->getPhone(),
+                'email' => $contact->getEmail(),
+                'company' => $contact->getIdCompany()
+            ];
+
+            if (Form::validate($_POST, ['first_name', 'last_name', 'phone', 'email', 'company'])) {
+
+                $name = strip_tags($_POST['first_name']);
+                $lastName = strip_tags($_POST['last_name']);
+                $phone = strip_tags($_POST['phone']);
+                $email = strip_tags($_POST['email']);
+                $company = strip_tags($_POST['company']);
+                $valeurs = ['firstName' => $name, 'lastName' => $lastName, 'phone' => $phone, 'email' => $email, 'idCompany' => $company, 'id' => $id];
+                $newContact = (new ContactModel())->hydrate($valeurs)->update();
+
+                $_SESSION['success'][] = 'Update contact.';
+                header('Location: /contacts');
+                exit;
+            } else if (isset($_POST['first_name']) && isset($_POST['last_name']) && isset($_POST['phone']) && isset($_POST['email']) && isset($_POST['company'])) {
+                $_SESSION['warning'][] = 'Be careful, fill in the form correctly.';
+            }
+
+            $companyAll = (new CompanyModel())->findAll();
+            foreach ($companyAll as $line) {
+                $companyList[($line->id)] = $line->Name;
+            }
+
+            $form = new Form($valueImport);
+
+            $form->debutForm('post', '#', ['style' => 'width: 250px; margin: auto;'])
+                ->ajoutLabelFor('first_name', 'Your name')
+                ->ajoutInput('first_name', 'first_name', ['id' => 'first_name', 'class' => 'form-control'])
+                ->ajoutLabelFor('last_name', 'Your last name')
+                ->ajoutInput('last_name', 'last_name', ['id' => 'last_name', 'class' => 'form-control'])
+                ->ajoutLabelFor('phone', 'Your phone number')
+                ->ajoutInput('phone', 'phone', ['id' => 'phone', 'class' => 'form-control'])
+                ->ajoutLabelFor('email', 'Your email')
+                ->ajoutInput('email', 'email', ['id' => 'email', 'class' => 'form-control'])
+                ->ajoutLabelFor('company', 'Your company')
+                ->ajoutSelect('company', $companyList, ['id' => 'company', 'class' => 'form-control'])
+                ->ajoutButton('submit', ['class' => 'btn btn-primary mt-3'])
+                ->finForm();
+
+            $this->render('contact/add', ['newContactForm' => $form->create()]);
+        } else {
+            $_SESSION['error'][] = 'Error, please log-in as an admin.';
+            header('Location: /');
+        }
+    }
 }
