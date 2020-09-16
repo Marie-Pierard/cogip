@@ -34,6 +34,7 @@ class ContactsController extends Controller {
     }
 
     public function add(){
+    if($_SESSION['user']['role'] === 'admin' OR $_SESSION['user']['role'] === 'moderator' ) {
     // On vérifie si notre post contient tous les champs
     if(Form::validate($_POST, ['first_name', 'last_name', 'phone', 'email', 'company'])){
         
@@ -75,7 +76,12 @@ class ContactsController extends Controller {
         ->finForm();
     
     $this->render('contact/add', ['newContactForm' => $form->create()]);
-    }
+}
+        else {
+            $_SESSION['error'][] = 'Erreur veuillez vous connecter en tant qu\'admin ou modérateur';
+            header('Location: /');
+            }
+}
 
     public function delete(int $id){
         if($_SESSION['user']['role'] === 'admin') {

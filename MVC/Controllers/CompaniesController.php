@@ -10,6 +10,7 @@ use Cogit\Core\Form;
 use Cogit\Models\UsersModel;
 
 class CompaniesController extends Controller {
+    
     public function index()
     {
 
@@ -60,8 +61,8 @@ class CompaniesController extends Controller {
         $this->render('companies/details', $details);
     }
 
-    
     function add(){
+        if($_SESSION['user']['role'] === 'admin' OR $_SESSION['user']['role'] === 'moderator' ) {
         $countrySelect = (new CountryModel())->findBy(['Country']);
         $country2 = [];
         foreach($countrySelect as $value){
@@ -102,6 +103,11 @@ class CompaniesController extends Controller {
         // On envoie le formulaire à la vue en utilisant notre méthode "create"
         $this->render('formCompany/formCompany', ['formCompany' => $formCompany->create()]);
     
+        }
+        else {
+            $_SESSION['error'][] = 'Erreur veuillez vous connecter en tant qu\'admin ou modérateur';
+            header('Location: /');
+            }
     }
 
     public function delete(int $id){

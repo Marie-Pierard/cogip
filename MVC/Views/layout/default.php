@@ -36,7 +36,7 @@
                 </li>
 
                 <?php if(isset($_SESSION['user']) && !empty($_SESSION['user']['id'])) : ?>
-                    <?php if($_SESSION['user']['role'] === 'admin') : ?>
+                    <?php if($_SESSION['user']['role'] === 'admin' OR $_SESSION['user']['role'] === 'moderator') : ?>
                         <li class="nav-item dropdown<?= (isset($_SESSION['page']) && $_SESSION['page'] == '/admin') ?  ' active' : '' ?>">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Admin
@@ -68,6 +68,18 @@
     <div class="container">
         <?= $content ?>
     </div>
+     <!-- Footer -->
+     <footer  position="fixed" bottom="0">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <ul class="navbar-nav mr-auto" style="color:white"> 
+        <li class="nav-item" style="margin-right:2rem"> © Copyright </li>
+        <li class="nav-item"> Cogip is the best </liv>
+      </ul>              
+    </nav>
+
+    </footer>
+    <!-- Footer -->
+
     
     <script src="/assets/js/jquery-3.5.1.slim.min.js"></script>
     <script src="/assets/js/popper.min.js"></script>

@@ -36,6 +36,7 @@ class InvoicesController extends Controller
 
     public function add()
     {
+        if($_SESSION['user']['role'] === 'admin' OR $_SESSION['user']['role'] === 'moderator' ) {
         $_SESSION['js'][] = 'CompanyContact';
         // On vérifie si notre post contient les champs email et password
         if (Form::validate($_POST, ['NumberInvoice', 'date', 'Company', 'Contact'])) {
@@ -81,6 +82,11 @@ class InvoicesController extends Controller
             ->finForm();
 
         $this->render('invoices/add', ['invoiceForm' => $form->create(), 'dataJs' => $this->generateDataJs()]);
+    }
+    else {
+        $_SESSION['error'][] = 'Erreur veuillez vous connecter en tant qu\'admin ou modérateur';
+        header('Location: /');
+        }
     }
 
     private function generateDataJs(){
