@@ -51,7 +51,7 @@ class ContactsController extends Controller {
         $_SESSION['success'][] = 'New contact added.';
         header('Location: /contacts/add');
         exit;
-    } else if(isset($_POST['login']) && isset($_POST['email']) && isset($_POST['password'])) {
+    } else if(isset($_POST['first_name']) && isset($_POST['last_name']) && isset($_POST['phone']) && isset($_POST['email']) && isset($_POST['company'])) {
         $_SESSION['warning'][] = 'Attention veuillez remplir les champs correctement.';
     } 
     $companyAll = (new CompanyModel()) -> findAll();
@@ -59,7 +59,7 @@ class ContactsController extends Controller {
         $companyList[($line->id)] = $line->Name;
     }
 
-    $form = new Form;
+    $form = new Form($_POST);
 
     $form->debutForm('post', '#', ['style'=>'width: 250px; margin: auto;'])
         ->ajoutLabelFor('first_name', 'Your name')

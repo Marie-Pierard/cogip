@@ -8243,6 +8243,12 @@ body {
   height: 1.5em;
 }
 
+footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+
 /*# sourceMappingURL=style.css.map */
 footer {
   width: 100%;
