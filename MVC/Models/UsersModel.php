@@ -1,5 +1,5 @@
 <?php
-namespace Cogit\Models;
+namespace Cogip\Models;
 
 class UsersModel extends Model
 {
@@ -11,7 +11,7 @@ class UsersModel extends Model
 
     public function __construct()
     {
-        $this->table = 'cogit_users';
+        $this->table = 'cogip_users';
     }
     /**
      * Récupérer un user à partir de son login

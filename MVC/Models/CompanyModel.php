@@ -1,5 +1,5 @@
 <?php
-namespace Cogit\Models;
+namespace Cogip\Models;
 
 class  CompanyModel extends Model
 {
@@ -15,7 +15,7 @@ class  CompanyModel extends Model
 
     public function __construct()
     {
-        $this->table = 'cogit_company';
+        $this->table = 'cogip_company';
     }
 
 

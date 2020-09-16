@@ -1,7 +1,7 @@
 <?php
-namespace Cogit\Core;
+namespace Cogip\Core;
 
-use Cogit\Controllers\Controller;
+use Cogip\Controllers\Controller;
 
 class Main
 {
@@ -32,7 +32,7 @@ class Main
         if($params[0] != ""){
             // On sauvegarde le 1er paramètre dans $controller en mettant sa 1ère lettre en majuscule, en ajoutant le namespace des controleurs et en ajoutant "Controller" à la fin
             $cont = array_shift($params);
-            $controller = '\\Cogit\\Controllers\\'.ucfirst($cont).'Controller';
+            $controller = '\\Cogip\\Controllers\\'.ucfirst($cont).'Controller';
             $_SESSION['page'] = '/' . $cont  ;
 
             // On sauvegarde le 2ème paramètre dans $action si il existe, sinon index
@@ -42,7 +42,7 @@ class Main
             // Si la class n'existe pas on retourne à la page d'acceuil
             if(!class_exists($controller)){
                 http_response_code(404);
-                $_SESSION['error'][] = "La page recherchée n'existe pas";
+                $_SESSION['error'][] = "The page you're looking for doesn't exist.";
                 header('Location: /');
                 exit;
             }
@@ -56,14 +56,14 @@ class Main
             }else{
                 // On envoie le code réponse 404
                 http_response_code(404);
-                $_SESSION['error'][] = "La page recherchée n'existe pas";
+                $_SESSION['error'][] = "The page you're looking for doesn't exist.";
                 header('Location: /');
                 exit;
             }
         }else{
             // Ici aucun paramètre n'est défini
             // On instancie le contrôleur par défaut (page d'accueil)
-            $controller = new \Cogit\Controllers\MainController();
+            $controller = new \Cogip\Controllers\MainController();
 
             // On appelle la méthode index
             $controller->index();

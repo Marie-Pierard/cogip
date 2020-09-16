@@ -7,7 +7,7 @@
   <thead class="thead-dark">
     <tr>
       <th scope="col">Name</th>
-      <th scope="col">Tva</th>
+      <th scope="col">VAT</th>
       <th scope="col">Company Type</th>
       <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
           <th scope="col"></th>

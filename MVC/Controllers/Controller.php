@@ -1,6 +1,6 @@
 <?php
 
-namespace Cogit\Controllers;
+namespace Cogip\Controllers;
 
 abstract class Controller{
     /**

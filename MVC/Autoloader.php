@@ -1,6 +1,6 @@
 <?php
 
-namespace Cogit;
+namespace Cogip;
 
 class Autoloader
 {

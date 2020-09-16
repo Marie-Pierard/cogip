@@ -1,6 +1,6 @@
 <?php
 
-namespace Cogit\Core;
+namespace cogip\Core;
 
 // On "importe" PDO
 use PDO;
@@ -16,7 +16,7 @@ class Db extends PDO
     private const DBPORT = 3306;
     private const DBUSER = 'root';
     private const DBPASS = 'Marie';
-    private const DBNAME = 'cogit';
+    private const DBNAME = 'cogip';
 
     private function __construct()
     {

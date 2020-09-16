@@ -1,2 +1,2 @@
-<h1>Edition du role d'utilisateur</h1>
+<h1>Edit user's role</h1>
 <?= $form ?>

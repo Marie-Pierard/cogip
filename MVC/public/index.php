@@ -3,12 +3,12 @@
 define('ROOT', dirname(__DIR__));
 
 // On charge l'Autoloader
-use Cogit\Autoloader;
+use Cogip\Autoloader;
 require_once ROOT.'/Autoloader.php';
 Autoloader::register();
 
 // On instancie Main
-use Cogit\Core\Main;
+use Cogip\Core\Main;
 $app = new Main();
 
 // On démarre l'application

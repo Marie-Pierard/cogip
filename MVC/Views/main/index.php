@@ -3,7 +3,7 @@
 <h3>Welcome <?= isset($_SESSION['user']['login']) ? $_SESSION['user']['login'] : '' ?>!</h3>
 
 
-<h5 class="text-secondary mt-5">5 Last Invoice</h5>
+<h5 class="text-secondary mt-5">5 Last Invoices</h5>
 <table class="table mt-3">
   <thead class="thead-dark">
     <tr>
@@ -29,7 +29,7 @@
   </tbody>
 </table>
 
-<h5 class="text-secondary mt-5">5 Last Contact</h5>
+<h5 class="text-secondary mt-5">5 Last Contacts</h5>
 <table class="table mt-3">
   <thead class="thead-dark">
     <tr>
@@ -57,12 +57,12 @@
   </tbody>
 </table>
 
-<h5 class="text-secondary mt-5">5 Last Company</h5>
+<h5 class="text-secondary mt-5">5 Last Companies</h5>
 <table class="table mt-3">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Name</th>
-      <th scope="col">N° TVA</th>
+      <th scope="col">VAT No</th>
       <th scope="col">Country</th>
       <th scope="col">Type</th>
       <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>

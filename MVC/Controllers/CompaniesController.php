@@ -1,13 +1,13 @@
 <?php
 
-namespace Cogit\Controllers;
+namespace Cogip\Controllers;
 
-use Cogit\Models\CompanyModel;
-use Cogit\Models\CountryModel;
-use Cogit\Models\ContactModel;
-use Cogit\Models\InvoiceModel;
-use Cogit\Core\Form;
-use Cogit\Models\UsersModel;
+use Cogip\Models\CompanyModel;
+use Cogip\Models\CountryModel;
+use Cogip\Models\ContactModel;
+use Cogip\Models\InvoiceModel;
+use Cogip\Core\Form;
+use Cogip\Models\UsersModel;
 
 class CompaniesController extends Controller {
     public function index()
@@ -94,8 +94,8 @@ class CompaniesController extends Controller {
                 'Name'=>$companyName,
                 'Tva'=>$TVA
             ];
-            $company->requete('INSERT INTO cogit_company (idType,idCountry,Name,Tva) VALUES (:idType,:idCountry,:Name,:Tva)',$data);
-            $_SESSION['success'][] = 'Donnée bien ajoutée';
+            $company->requete('INSERT INTO cogip_company (idType,idCountry,Name,Tva) VALUES (:idType,:idCountry,:Name,:Tva)',$data);
+            $_SESSION['success'][] = 'Data added.';
 
         };
     
@@ -107,7 +107,7 @@ class CompaniesController extends Controller {
     public function delete(int $id){
         if($_SESSION['user']['role'] === 'admin') {
             (new CompanyModel())->delete($id);
-            $_SESSION['success'][] = 'Data deleted';
+            $_SESSION['success'][] = 'Data deleted.';
             header('Location: /contacts');
             exit;
         }

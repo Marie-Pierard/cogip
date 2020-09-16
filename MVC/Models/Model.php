@@ -1,7 +1,7 @@
 <?php
-namespace Cogit\Models;
+namespace Cogip\Models;
 
-use Cogit\Core\Db;
+use Cogip\Core\Db;
 
 class Model extends Db
 {

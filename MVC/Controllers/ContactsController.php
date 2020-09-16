@@ -1,10 +1,10 @@
 <?php
 
-namespace Cogit\Controllers;
-use Cogit\Core\Form;
-use Cogit\Models\ContactModel;
-use Cogit\Models\CompanyModel;
-use Cogit\Models\InvoiceModel;
+namespace Cogip\Controllers;
+use Cogip\Core\Form;
+use Cogip\Models\ContactModel;
+use Cogip\Models\CompanyModel;
+use Cogip\Models\InvoiceModel;
 
 class ContactsController extends Controller {
     public function index()
@@ -44,14 +44,14 @@ class ContactsController extends Controller {
         $company = strip_tags($_POST['company']);
         $newContact = new ContactModel;
         $valeurs = ['first_name'=>$name, 'last_name'=>$lastName, 'phone'=>$phone, 'email'=>$email, 'company'=>$company];
-        $newContact -> requete ('INSERT INTO cogit_contact (idCompany, LastName, FirstName, Phone, Email) VALUES (:company, :last_name, :first_name, :phone, :email)', $valeurs);
+        $newContact -> requete ('INSERT INTO cogip_contact (idCompany, LastName, FirstName, Phone, Email) VALUES (:company, :last_name, :first_name, :phone, :email)', $valeurs);
 
         
         $_SESSION['success'][] = 'New contact added.';
         header('Location: /contacts/add');
         exit;
     } else if(isset($_POST['login']) && isset($_POST['email']) && isset($_POST['password'])) {
-        $_SESSION['warning'][] = 'Attention veuillez remplir les champs correctement.';
+        $_SESSION['warning'][] = 'Be careful, fill in the form correctly.';
     } 
     $companyAll = (new CompanyModel()) -> findAll();
     foreach($companyAll as $line) {
@@ -80,7 +80,7 @@ class ContactsController extends Controller {
     public function delete(int $id){
         if($_SESSION['user']['role'] === 'admin') {
             (new ContactModel())->delete($id);
-            $_SESSION['success'][] = 'Data deleted';
+            $_SESSION['success'][] = 'Data deleted.';
             header('Location: /contacts');
             exit;
         }

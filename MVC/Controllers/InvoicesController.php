@@ -1,11 +1,11 @@
 <?php
 
-namespace Cogit\Controllers;
+namespace Cogip\Controllers;
 
-use Cogit\Core\Form;
-use Cogit\Models\InvoiceModel;
-use Cogit\Models\CompanyModel;
-use Cogit\Models\ContactModel;
+use Cogip\Core\Form;
+use Cogip\Models\InvoiceModel;
+use Cogip\Models\CompanyModel;
+use Cogip\Models\ContactModel;
 
 class InvoicesController extends Controller
 {
@@ -47,12 +47,12 @@ class InvoicesController extends Controller
 
             $newInvoice = new InvoiceModel;
             $valeurs = ['NumberInvoice' => $NumberInvoice, 'date' => $date, 'idCompany' => $idCompany, 'idContact' => $idContact];
-            $newInvoice->requete('INSERT INTO cogit_invoice (NumberInvoice, date, idCompany, idContact) VALUES (:NumberInvoice,:date,:idCompany,:idContact )', $valeurs);
+            $newInvoice->requete('INSERT INTO cogip_invoice (NumberInvoice, date, idCompany, idContact) VALUES (:NumberInvoice,:date,:idCompany,:idContact )', $valeurs);
             $_SESSION['success'][] = 'new invoice added.';
             header('Location: /invoices/add');
             exit;
         } else if (isset($_POST['NumberInvoice']) && isset($_POST['date']) && isset($_POST['Company']) && isset($_POST['Contact'])) {
-            $_SESSION['warning'][] = 'Attention veuillez remplir les champs correctement.';
+            $_SESSION['warning'][] = 'Be careful, fill in the form correctly.';
         }
 
         // creation of the CompanyList array
@@ -111,7 +111,7 @@ class InvoicesController extends Controller
     public function delete(int $id){
         if($_SESSION['user']['role'] === 'admin') {
             (new InvoiceModel())->delete($id);
-            $_SESSION['success'][] = 'Data deleted';
+            $_SESSION['success'][] = 'Data deleted.';
             header('Location: /contacts');
             exit;
         }
