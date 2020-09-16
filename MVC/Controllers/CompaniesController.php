@@ -16,8 +16,8 @@ class CompaniesController extends Controller
     {
 
         $companies = [
-            'allclients' => (new CompanyModel())->findBy(['idType' => 1]),
-            'allsuppliers' => (new CompanyModel())->findBy(['idType' => 2])
+            'allclients' => (new CompanyModel())->findBy(['idType' => 1], 'Name'),
+            'allsuppliers' => (new CompanyModel())->findBy(['idType' => 2], 'Name')
         ];
 
         // set country for allclients with join

@@ -11,7 +11,7 @@ class ContactsController extends Controller
 {
     public function index()
     {
-        $contacts = (new ContactModel())->findAll();
+        $contacts = (new ContactModel())->findAll('LastName, FirstName');
 
         $contact = [];
         foreach ($contacts as $value) {

@@ -38,9 +38,9 @@ class Model extends Db
      * Sélection de tous les enregistrements d'une table
      * @return array Tableau des enregistrements trouvés
      */
-    public function findAll()
+    public function findAll($field='id', $orderBy='ASC')
     {
-        $query = $this->requete('SELECT * FROM '.$this->table);
+        $query = $this->requete('SELECT * FROM '.$this->table . " ORDER BY $field $orderBy");
         return $query->fetchAll();
     }
 
@@ -49,7 +49,7 @@ class Model extends Db
      * @param array $criteres Tableau de critères
      * @return array Tableau des enregistrements trouvés
      */
-    public function findBy(array $criteres)
+    public function findBy(array $criteres, $field='id', $orderBy='ASC')
     {
         $champs = [];
         $valeurs = [];
@@ -64,7 +64,7 @@ class Model extends Db
         $liste_champs = implode(' AND ', $champs);
 
         // On exécute la requête
-        return $this->requete("SELECT * FROM {$this->table} WHERE $liste_champs", $valeurs)->fetchAll();
+        return $this->requete("SELECT * FROM {$this->table} WHERE $liste_champs ORDER BY $field $orderBy", $valeurs)->fetchAll();
     }
 
     /**

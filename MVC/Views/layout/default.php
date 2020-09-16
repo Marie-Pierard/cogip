@@ -17,7 +17,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse navbarFont" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item<?= (isset($_SESSION['page']) && $_SESSION['page'] == '/') ?  ' active' : '' ?>">
                     <a class="nav-link" href="/">Home</a>
@@ -39,10 +39,13 @@
                     <?php if($_SESSION['user']['role'] === 'admin' OR $_SESSION['user']['role'] === 'moderator') : ?>
                         <li class="nav-item dropdown<?= (isset($_SESSION['page']) && $_SESSION['page'] == '/admin') ?  ' active' : '' ?>">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Admin
+                            <?= $_SESSION['user']['role'] === 'admin' ? 'Administration' : 'Moderation' ?>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="/admin/view">Dashboard</a>
+                            <?php if($_SESSION['user']['role'] === 'admin') : ?>
+                                <a class="dropdown-item" href="/admin/users">Users</a>
+                                <a class="dropdown-item" href="/admin">Dashboard</a>
+                            <?php endif; ?>
                             <a class="dropdown-item" href="/contacts/add">New contact</a>
                             <a class="dropdown-item" href="/companies/add">New company</a>
                             <a class="dropdown-item" href="/invoices/add">New invoice</a>

@@ -12,7 +12,7 @@ class InvoicesController extends Controller
     public function index()
     {
         $info = [
-            'invoices' => (new InvoiceModel())->findAll()
+            'invoices' => (new InvoiceModel())->findAll('date', 'DESC')
         ];
 
         $invoice = [];

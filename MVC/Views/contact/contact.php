@@ -15,7 +15,7 @@
   <tbody>
     <?php foreach($data as $line) : ?>
         <tr>
-            <td><a href="/contacts/details/<?= $line->getId() ?>"><?= $line->getFirstName()," ", $line->getLastName() ?></a></td>
+            <td><a href="/contacts/details/<?= $line->getId() ?>"><?= $line->getLastName()," ", $line->getFirstName() ?></a></td>
             <td><?= $line->getPhone() ?></td>
             <td><?= $line->getEmail() ?></td>
             <td><?= $line->getCompany()->getName() ?></td>
