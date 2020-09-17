@@ -15,7 +15,7 @@ class Db extends PDO
     private const DBHOST = 'localhost';
     private const DBPORT = 3306;
     private const DBUSER = 'root';
-    private const DBPASS = '';
+    private const DBPASS = 'Marie';
     private const DBNAME = 'cogip';
 
     private function __construct()
