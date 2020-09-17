@@ -22,6 +22,7 @@ class InvoicesController extends Controller
         $info['invoices'] = $invoice;
         $this->render('invoices/invoice', $info);
     }
+
     public function details(int $id)
     {
         $details = [
@@ -78,7 +79,7 @@ class InvoicesController extends Controller
             ->ajoutSelect('Company', $companyList, ['class' => 'form-control', 'id' => 'Company'])
             ->ajoutLabelFor('Contact', 'Contact')
             ->ajoutSelect('Contact', $contactList, ['class' => 'form-control', 'id' => 'Contact'])
-            ->ajoutButton('New Invoice', ['class' => 'btn btn-primary mt-3'])
+            ->ajoutButton('Submit', ['class' => 'btn btn-primary mt-3'])
             ->finForm();
 
         $this->render('invoices/add', ['invoiceForm' => $form->create(), 'dataJs' => $this->generateDataJs()]);
@@ -86,6 +87,67 @@ class InvoicesController extends Controller
     else {
         $_SESSION['error'][] = 'Error, please log-in as a moderator or an admin.';
         header('Location: /');
+        }
+    }
+
+    public function update(int $id)
+    {
+        if($_SESSION['user']['role'] === 'admin') {
+            $_SESSION['js'][] = 'CompanyContact';
+            $invoice= (new InvoiceModel())->hydrate((new InvoiceModel())->find($id));
+            $valueImport = [
+                'NumberInvoice' => $invoice->getNumberInvoice(),
+                'date' => $invoice->getDate(),
+                'Company' => $invoice->getIdCompany(),
+                'Contact' => $invoice->getIdContact()
+            ];
+
+        // On vérifie si notre post contient les champs email et password
+            if (Form::validate($_POST, ['NumberInvoice', 'date', 'Company', 'Contact'])) {
+                // On nettoie le login, l'e-mail et on chiffre le mot de passe
+                $NumberInvoice = strip_tags($_POST['NumberInvoice']);
+                $date = $_POST['date'];
+                $idCompany = strip_tags($_POST['Company']);
+                $idContact = strip_tags($_POST['Contact']);
+
+                $valeurs = ['NumberInvoice' => $NumberInvoice, 'date' => $date, 'idCompany' => $idCompany, 'idContact' => $idContact];
+                $newInvoice = (new InvoiceModel())->hydrate($valeurs)->update();
+                $_SESSION['success'][] = 'Invoice updated.';
+                header('Location: /invoices');
+                exit;
+            } else if (isset($_POST['NumberInvoice']) && isset($_POST['date']) && isset($_POST['Company']) && isset($_POST['Contact'])) {
+                $_SESSION['warning'][] = 'Be careful, fill in the form correctly.';
+            }
+
+                // creation of the CompanyList array
+                $companyAll = (new CompanyModel())->findAll();
+                foreach ($companyAll as $line) {
+                    $companyList[($line->id)] = $line->Name;
+                }
+                // Creation of the ContactList array
+                $contactAll = (new ContactModel())->findAll();
+                foreach ($contactAll as $line) {
+                    $contactList[($line->id)] = $line->LastName . " " . $line->FirstName;
+                }
+
+                $form = new Form($valueImport);
+
+                $form->debutForm('post', '#', ['style' => 'width: 450px; margin: auto;'])
+                    ->ajoutLabelFor('NumberInvoice', 'Number of the invoice')
+                    ->ajoutInput('NumberInvoice', 'NumberInvoice', ['class' => 'form-control', 'id' => 'NumberInvoice'])
+                    ->ajoutLabelFor('date', 'Date of the invoice')
+                    ->ajoutInput('date', 'date', ['class' => 'form-control', 'id' => 'date'])
+                    ->ajoutLabelFor('Company', 'Company')
+                    ->ajoutSelect('Company', $companyList, ['class' => 'form-control', 'id' => 'Company'])
+                    ->ajoutLabelFor('Contact', 'Contact')
+                    ->ajoutSelect('Contact', $contactList, ['class' => 'form-control', 'id' => 'Contact'])
+                    ->ajoutButton('Submit', ['class' => 'btn btn-primary mt-3'])
+                    ->finForm();
+
+                $this->render('invoices/update', ['invoiceForm' => $form->create(), 'dataJs' => $this->generateDataJs()]);
+        } else {
+            $_SESSION['error'][] = 'Error, please log-in as a moderator or an admin.';
+            header('Location: /');
         }
     }
 

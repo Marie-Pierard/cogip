@@ -79,7 +79,7 @@ class CompaniesController extends Controller
                 ->ajoutSelect("Country", $country2, ['id' => "CountrySelect", 'class' => 'form-control'])
                 ->ajoutLabelFor('CompanyType', 'Select a type')
                 ->ajoutSelect("Type", [1 => 'Customer', 2 => 'Provider'], ['id' => "TypeSelect", 'class' => 'form-control'])
-                ->ajoutButton('Add', ['class' => 'btn btn-primary mt-3'])
+                ->ajoutButton('Submit', ['class' => 'btn btn-primary mt-3'])
                 ->finForm();
             if (isset($_POST['Name']) and isset($_POST['TVA']) and isset($_POST['Country']) and isset($_POST['Type'])) {
                 $companyName = strip_tags($_POST['Name']);
@@ -128,6 +128,58 @@ class CompaniesController extends Controller
             $_SESSION['success'][] = 'Company and linked contact and invoices deleted';
             header('Location: /companies');
             exit;
+        }
+    }
+
+    function update(int $id)
+    {
+        if ($_SESSION['user']['role'] === 'admin') {
+            $company= (new CompanyModel())->hydrate((new CompanyModel())->find($id));
+            $valueImport = [
+                'Name' => $company->getName(),
+                'TVA' => $company->getTva(),
+                'Country' => $company->getIdCountry(),
+                'Type' => $company->getIdType()
+            ];
+
+            $countrySelect = (new CountryModel())->findBy(['Country']);
+            $country2 = [];
+            foreach ($countrySelect as $value) {
+                $country2[$value->id] = $value->Country;
+            };
+            $formCompany = new Form($valueImport);
+
+            // On ajoute chacune des parties qui nous intéressent
+            $formCompany->debutForm('post', '#', ['style' => 'width: 250px; margin: auto;'])
+                ->ajoutLabelFor('Name', 'Company Name')
+                ->ajoutInput('Name', 'Name', ['id' => 'Name', 'class' => 'form-control'])
+                ->ajoutLabelFor('TVA', 'TVA')
+                ->ajoutInput('TVA', 'TVA', ['id' => 'Tva', 'class' => 'form-control'])
+                ->ajoutLabelFor('CountrySelect', 'Select a country')
+                ->ajoutSelect("Country", $country2, ['id' => "CountrySelect", 'class' => 'form-control'])
+                ->ajoutLabelFor('CompanyType', 'Select a type')
+                ->ajoutSelect("Type", [1 => 'Customer', 2 => 'Provider'], ['id' => "TypeSelect", 'class' => 'form-control'])
+                ->ajoutButton('Submit', ['class' => 'btn btn-primary mt-3'])
+                ->finForm();
+
+            if (isset($_POST['Name']) and isset($_POST['TVA']) and isset($_POST['Country']) and isset($_POST['Type'])) {
+                $companyName = strip_tags($_POST['Name']);
+                $TVA = strip_tags($_POST['TVA']);
+                $country = $_POST['Country'];
+                $type = $_POST['Type'];
+                
+                $valeurs = ['Name' => $companyName, 'Tva' => $TVA, 'idCountry' => $country, 'type' => $idType, 'id' => $id];
+                $newCompany = (new ContactModel())->hydrate($valeurs)->update();
+                $_SESSION['success'][] = 'Company updated.';
+                header('Location: /companies');
+                exit;
+            };
+
+                // On envoie le formulaire à la vue en utilisant notre méthode "create"
+                $this->render('companies/update', ['newCompanyForm' => $formCompany->create()]);
+        } else {
+            $_SESSION['error'][] = 'Error, please log-in as a moderator or an admin.';
+            header('Location: /');
         }
     }
 }

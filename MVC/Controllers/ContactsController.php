@@ -153,7 +153,7 @@ class ContactsController extends Controller
                 ->ajoutButton('submit', ['class' => 'btn btn-primary mt-3'])
                 ->finForm();
 
-            $this->render('contact/add', ['newContactForm' => $form->create()]);
+            $this->render('contact/update', ['newContactForm' => $form->create()]);
         } else {
             $_SESSION['error'][] = 'Error, please log-in as an admin.';
             header('Location: /');

@@ -18,7 +18,7 @@
             <td><a href="/contacts/details/<?= $line->getId() ?>"><?= $line->getLastName()," ", $line->getFirstName() ?></a></td>
             <td><?= $line->getPhone() ?></td>
             <td><?= $line->getEmail() ?></td>
-            <td><a href="/companies/details/<?= $line->getCompany()->getId() ?>"><?= $line->getCompany()->getName() ?></a></td>
+            <td><?= $line->getCompany()->getName() ?></td>
             <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
                 <td>
                   <a href="/contacts/update/<?= $line->getId() ?>"><img src="/assets/images/update.png" alt="Update contact" class="icone"></a>

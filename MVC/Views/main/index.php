@@ -21,9 +21,6 @@
             <td class="font-weight-bold"><a href="/invoices/details/<?= $line->getId() ?>"><?= $line->getNumberInvoice() ?></a></td>
             <td><?= $line->getDate() ?></td>
             <td class="font-weight-bold"><a href="/companies/details/<?= $line->getCompany()->getId() ?>"><?= $line->getCompany()->getName() ?></a></td>
-            <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
-                <td><a href="/invoices/delete/<?= $line->getId() ?>"><img src="/assets/images/delete.png" alt="Delete invoice" class="icone"></a></td>
-            <?php endif;?>
         </tr>
     <?php endforeach; ?>
   </tbody>
@@ -49,9 +46,6 @@
             <td><?= $line->getEmail() ?></td>
             <td><?= $line->getPhone() ?></td>
             <td class="font-weight-bold"><a href="/companies/details/<?= $line->getCompany()->getId() ?>"><?= $line->getCompany()->getName() ?></a></td>
-            <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
-                <td><a href="/contacts/delete/<?= $line->getId() ?>"><img src="/assets/images/delete.png" alt="Delete invoice" class="icone"></a></td>
-            <?php endif;?>
         </tr>
     <?php endforeach; ?>
   </tbody>
@@ -77,9 +71,6 @@
             <td><?= $line->getTva() ?></td>
             <td><?= $line->getCountry()->getCountry() ?></td>
             <td><?= $line->getType()->getType() ?></td>
-            <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
-                <td><a href="/companies/delete/<?= $line->getId() ?>"><img src="/assets/images/delete.png" alt="Delete company" class="icone"></a></td>
-            <?php endif;?>
         </tr>
     <?php endforeach; ?>
   </tbody>
