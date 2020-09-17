@@ -10,9 +10,6 @@
       <th scope="col">Invoice number</th>
       <th scope="col">Dates</th>
       <th scope="col">Company</th>
-      <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
-        <th scope="col"></th>
-      <?php endif;?>
     </tr>
   </thead>
   <tbody>

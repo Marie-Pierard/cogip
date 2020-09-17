@@ -168,8 +168,8 @@ class CompaniesController extends Controller
                 $country = $_POST['Country'];
                 $type = $_POST['Type'];
                 
-                $valeurs = ['Name' => $companyName, 'Tva' => $TVA, 'idCountry' => $country, 'type' => $idType, 'id' => $id];
-                $newCompany = (new ContactModel())->hydrate($valeurs)->update();
+                $valeurs = ['Name' => $companyName, 'Tva' => $TVA, 'idCountry' => $country, 'idType' => $type, 'id' => $id];
+                $newCompany = (new CompanyModel())->hydrate($valeurs)->update();
                 $_SESSION['success'][] = 'Company updated.';
                 header('Location: /companies');
                 exit;

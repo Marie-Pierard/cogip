@@ -76,7 +76,8 @@ class InvoiceModel extends Model
      */ 
     public function setDate(string $date):self
     {
-        $this->date = date_format(date_create($date),"d/m/Y");
+        // $this->date = date_format(date_create($date),"d/m/Y");
+        $this->date = $date;
         return $this;
     }
     // getter and setter for idCompany
