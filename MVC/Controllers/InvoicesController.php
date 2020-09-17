@@ -51,7 +51,7 @@ class InvoicesController extends Controller
             $valeurs = ['NumberInvoice' => $NumberInvoice, 'date' => $date, 'idCompany' => $idCompany, 'idContact' => $idContact];
             $newInvoice->requete('INSERT INTO cogip_invoice (NumberInvoice, date, idCompany, idContact) VALUES (:NumberInvoice,:date,:idCompany,:idContact )', $valeurs);
             $_SESSION['success'][] = 'new invoice added.';
-            header('Location: /invoices/add');
+            header('Location: /invoices');
             exit;
         } else if (isset($_POST['NumberInvoice']) && isset($_POST['date']) && isset($_POST['Company']) && isset($_POST['Contact'])) {
             $_SESSION['warning'][] = 'Be careful, fill in the form correctly.';

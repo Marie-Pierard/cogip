@@ -95,7 +95,7 @@ class CompaniesController extends Controller
                 ];
                 $company->requete('INSERT INTO cogip_company (idType,idCountry,Name,Tva) VALUES (:idType,:idCountry,:Name,:Tva)', $data);
                 $_SESSION['success'][] = 'Data added.';
-                header('Location: /companies/add');
+                header('Location: /companies');
                 exit;
             };
 

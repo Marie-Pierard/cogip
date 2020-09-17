@@ -53,7 +53,7 @@ class ContactsController extends Controller
 
 
                 $_SESSION['success'][] = 'New contact added.';
-                header('Location: /contacts/add');
+                header('Location: /contacts');
                 exit;
             } else if (isset($_POST['first_name']) && isset($_POST['last_name']) && isset($_POST['phone']) && isset($_POST['email']) && isset($_POST['company'])) {
                 $_SESSION['warning'][] = 'Be careful, fill in the form correctly.';
