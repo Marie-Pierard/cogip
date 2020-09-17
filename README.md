@@ -1,6 +1,6 @@
 # cogit
 Project carried out as part of the web development training programme offered by BeCode.  
-The final version can be seen at: 
+The final version can be seen at: http://cogip.gerardo-cella.net/
 
 ## Task to be completed: 
 
