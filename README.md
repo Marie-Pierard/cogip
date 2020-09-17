@@ -1,5 +1,5 @@
 # cogit
-Project carried out as part of the web development training programme offered by BeCode. 
+Project carried out as part of the web development training programme offered by BeCode.  
 The final version can be seen at: 
 
 ## Task to be completed: 
@@ -14,10 +14,10 @@ PHP and MySQL are the main tools to be used in this project.
 - Gerardo Cella
 - Simon Duquaine
 - Christophe Vanderlinden
- - Marie Pierard 
+- Marie Pierard 
 
  ## How we worked: 
- We tried to divide the tasks amongst all the team members, based on their personal strengths. 
+ We tried to divide the tasks amongst all the team members, based on their personal strengths.  
  Everyone contributed to the project and helped each other every step of the way. 
 
 
