@@ -33,7 +33,10 @@
             <td><?= $line->Phone ?></td>
             <td><?= $line->Email ?></td>
             <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
-                <td><a href="/contacts/delete/<?= $line->id ?>"><img src="/assets/images/delete.png" alt="Delete invoice" class="icone"></a></td>
+                <td>
+                  <a href="/contacts/update/<?= $line->id ?>"><img src="/assets/images/update.png" alt="update contact" class="icone"></a>
+                  <a href="/contacts/delete/<?= $line->id ?>"><img src="/assets/images/delete.png" alt="Delete contact" class="icone"></a>
+                </td>
             <?php endif;?>
         </tr>
     <?php endforeach; ?>
@@ -60,7 +63,10 @@
             <td><?= $line->getDate() ?></td>
             <td><a href="/contacts/details/<?= $line->getContact()->getId()?>"><?= $line->getContact()->getLastName() . ' ' . $line->getContact()->getFirstName() ?></td>
             <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
-                <td><a href="/invoices/delete/<?= $line->getId() ?>"><img src="/assets/images/delete.png" alt="Delete invoice" class="icone"></a></td>
+                <td>
+                  <a href="/invoices/update/<?= $line->getId() ?>"><img src="/assets/images/update.png" alt="update invoice" class="icone"></a>
+                  <a href="/invoices/delete/<?= $line->getId() ?>"><img src="/assets/images/delete.png" alt="Delete invoice" class="icone"></a>
+                </td>
             <?php endif;?>
         </tr>
     <?php endforeach; ?>

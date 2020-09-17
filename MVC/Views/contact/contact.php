@@ -15,12 +15,15 @@
   <tbody>
     <?php foreach($data as $line) : ?>
         <tr>
-            <td><a href="/contacts/details/<?= $line->getId() ?>"><?= $line->getFirstName()," ", $line->getLastName() ?></a></td>
+            <td><a href="/contacts/details/<?= $line->getId() ?>"><?= $line->getLastName()," ", $line->getFirstName() ?></a></td>
             <td><?= $line->getPhone() ?></td>
             <td><?= $line->getEmail() ?></td>
             <td><?= $line->getCompany()->getName() ?></td>
             <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
-                <td><a href="/contacts/delete/<?= $line->getId() ?>"><img src="/assets/images/delete.png" alt="Delete contact" class="icone"></a></td>
+                <td>
+                  <a href="/contacts/update/<?= $line->getId() ?>"><img src="/assets/images/update.png" alt="Update contact" class="icone"></a>
+                  <a href="/contacts/delete/<?= $line->getId() ?>"><img src="/assets/images/delete.png" alt="Delete contact" class="icone"></a>
+                </td>
             <?php endif;?>
         </tr>
     <?php endforeach; ?>

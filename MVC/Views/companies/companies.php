@@ -19,7 +19,10 @@
             <td><?= $line->getTva() ?></td>
             <td><?= $line->getCountry()->getCountry() ?></td>
             <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
-                <td><a href="/companies/delete/<?= $line->getId() ?>"><img src="/assets/images/delete.png" alt="Delete country" class="icone"></a>
+                <td>
+                  <a href="/companies/update/<?= $line->getId() ?>"><img src="/assets/images/update.png" alt="Update country" class="icone"></a>
+                  <a href="/companies/delete/<?= $line->getId() ?>"><img src="/assets/images/delete.png" alt="Delete country" class="icone"></a>
+                </td>
             <?php endif;?>
         </tr>
     <?php endforeach; ?>
@@ -45,7 +48,10 @@
             <td><?= $line->getTva() ?></td>
             <td><?= $line->getCountry()->getCountry() ?></td>
             <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
-                <td><a href="/companies/delete/<?= $line->getId() ?>"><img src="/assets/images/delete.png" alt="Delete country" class="icone"></a></td>
+                <td>
+                <a href="/companies/update/<?= $line->getId() ?>"><img src="/assets/images/update.png" alt="update country" class="icone"></a>
+                  <a href="/companies/delete/<?= $line->getId() ?>"><img src="/assets/images/delete.png" alt="Delete country" class="icone"></a>
+                  </td>
             <?php endif;?>
         </tr>
     <?php endforeach; ?>

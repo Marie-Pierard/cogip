@@ -20,7 +20,10 @@
             <td><?= $company->getCompany()->getTva() ?></td>
             <td><?= $company->getCompany()->getType()->getType() ?></td>
             <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
-                <td><a href="/contacts/delete/<?= $line->id ?>"><img src="/assets/images/delete.png" alt="Delete invoice" class="icone"></a></td>
+                <td>
+                  <a href="/company/update/<?= $line->id ?>"><img src="/assets/images/update.png" alt="Update company" class="icone"></a>
+                  <a href="/company/delete/<?= $line->id ?>"><img src="/assets/images/delete.png" alt="Delete company" class="icone"></a>
+                </td>
             <?php endif;?>
         </tr>
 
@@ -46,7 +49,10 @@
             <td><?= $line->Email ?></td>
             <td><?= $line->Phone ?></td>
             <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
-                <td><a href="/contacts/delete/<?= $line->id ?>"><img src="/assets/images/delete.png" alt="Delete invoice" class="icone"></a></td>
+                <td>
+                  <a href="/contacts/update/<?= $line->id ?>"><img src="/assets/images/update.png" alt="Update contact" class="icone"></a>
+                  <a href="/contacts/delete/<?= $line->id ?>"><img src="/assets/images/delete.png" alt="Delete contact" class="icone"></a>
+                </td>
             <?php endif;?>
         </tr>
 
