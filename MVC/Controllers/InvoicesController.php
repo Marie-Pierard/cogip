@@ -113,9 +113,7 @@ class InvoicesController extends Controller
                 $valeurs = ['NumberInvoice' => $NumberInvoice, 'date' => $date, 'idCompany' => $idCompany, 'idContact' => $idContact, 'id' => $id];
                 $newInvoice = (new InvoiceModel())->hydrate($valeurs)->update();
                 $_SESSION['success'][] = 'Invoice updated.';
-                var_dump($newInvoice);
-                var_dump((new InvoiceModel())->hydrate($valeurs));
-                //header('Location: /invoices');
+                header('Location: /invoices');
                 exit;
             } else if (isset($_POST['NumberInvoice']) && isset($_POST['date']) && isset($_POST['Company']) && isset($_POST['Contact'])) {
                 $_SESSION['warning'][] = 'Be careful, fill in the form correctly.';
