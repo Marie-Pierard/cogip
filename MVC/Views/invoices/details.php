@@ -21,8 +21,8 @@
             <td><?= $company->getCompany()->getType()->getType() ?></td>
             <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
                 <td>
-                  <a href="/company/update/<?= $line->id ?>"><img src="/assets/images/update.png" alt="Update company" class="icone"></a>
-                  <a href="/company/delete/<?= $line->id ?>"><img src="/assets/images/delete.png" alt="Delete company" class="icone"></a>
+                  <a href="/companies/update/<?= $company->getCompany()->getId() ?>"><img src="/assets/images/update.png" alt="Update company" class="icone"></a>
+                  <a href="/companies/delete/<?= $company->getCompany()->getId() ?>"><img src="/assets/images/delete.png" alt="Delete company" class="icone"></a>
                 </td>
             <?php endif;?>
         </tr>
